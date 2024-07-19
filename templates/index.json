@@ -1,0 +1,166 @@
+{
+	"sections": {
+		"image_banner": {
+			"type": "image-banner",
+			"blocks": {
+				"heading": {
+					"type": "heading",
+					"settings": {
+						"heading": "Browse our latest products",
+						"heading_size": "h0"
+					}
+				},
+				"button": {
+					"type": "buttons",
+					"settings": {
+						"button_label_1": "Shop all",
+						"button_link_1": "shopify://collections/all",
+						"button_style_secondary_1": true,
+						"button_label_2": "",
+						"button_link_2": "",
+						"button_style_secondary_2": false
+					}
+				}
+			},
+			"block_order": ["heading", "button"],
+			"settings": {
+				"image_overlay_opacity": 40,
+				"image_height": "large",
+				"desktop_content_position": "bottom-center",
+				"show_text_box": false,
+				"desktop_content_alignment": "center",
+				"color_scheme": "scheme-3",
+				"image_behavior": "none",
+				"mobile_content_alignment": "center",
+				"stack_images_on_mobile": false,
+				"show_text_below": false
+			}
+		},
+		"multirow_JeCrPg": {
+			"type": "multirow",
+			"blocks": {
+				"row_F4z3eh": {
+					"type": "row",
+					"settings": {
+						"caption": "Caption",
+						"heading": "Row",
+						"text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+						"button_label": "Button label",
+						"button_link": ""
+					}
+				}
+			},
+			"block_order": ["row_F4z3eh"],
+			"settings": {
+				"image_height": "medium",
+				"desktop_image_width": "medium",
+				"heading_size": "h1",
+				"text_style": "body",
+				"button_style": "secondary",
+				"desktop_content_position": "middle",
+				"desktop_content_alignment": "left",
+				"image_layout": "alternate-left",
+				"section_color_scheme": "",
+				"row_color_scheme": "",
+				"mobile_content_alignment": "left",
+				"padding_top": 36,
+				"padding_bottom": 36
+			}
+		},
+		"collage_ekhVUA": {
+			"type": "collage",
+			"blocks": {
+				"image_KHVUTX": { "type": "image", "settings": {} },
+				"product_Kcppbg": {
+					"type": "product",
+					"settings": { "product": "", "second_image": false }
+				},
+				"collection_jTgzff": {
+					"type": "collection",
+					"settings": { "collection": "" }
+				}
+			},
+			"block_order": [
+				"image_KHVUTX",
+				"product_Kcppbg",
+				"collection_jTgzff"
+			],
+			"settings": {
+				"heading": "Multimedia collage",
+				"heading_size": "h1",
+				"desktop_layout": "left",
+				"mobile_layout": "column",
+				"card_styles": "product-card-wrapper",
+				"color_scheme": "",
+				"padding_top": 36,
+				"padding_bottom": 36
+			}
+		},
+		"multirow_Rc6kVK": {
+			"type": "multirow",
+			"blocks": {
+				"row_mMTebe": {
+					"type": "row",
+					"settings": {
+						"caption": "Caption",
+						"heading": "Row",
+						"text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+						"button_label": "Button label",
+						"button_link": ""
+					}
+				}
+			},
+			"block_order": ["row_mMTebe"],
+			"settings": {
+				"image_height": "medium",
+				"desktop_image_width": "medium",
+				"heading_size": "h1",
+				"text_style": "body",
+				"button_style": "secondary",
+				"desktop_content_position": "middle",
+				"desktop_content_alignment": "left",
+				"image_layout": "alternate-left",
+				"section_color_scheme": "",
+				"row_color_scheme": "",
+				"mobile_content_alignment": "left",
+				"padding_top": 36,
+				"padding_bottom": 36
+			}
+		},
+		"featured_collection": {
+			"type": "featured-collection",
+			"settings": {
+				"title": "Bestsellers",
+				"heading_size": "h1",
+				"description": "",
+				"show_description": false,
+				"description_style": "body",
+				"collection": "all",
+				"products_to_show": 4,
+				"columns_desktop": 4,
+				"full_width": false,
+				"show_view_all": true,
+				"view_all_style": "solid",
+				"enable_desktop_slider": false,
+				"color_scheme": "scheme-1",
+				"image_ratio": "adapt",
+				"image_shape": "default",
+				"show_secondary_image": true,
+				"show_vendor": false,
+				"show_rating": false,
+				"quick_add": "none",
+				"columns_mobile": "1",
+				"swipe_on_mobile": true,
+				"padding_top": 44,
+				"padding_bottom": 36
+			}
+		}
+	},
+	"order": [
+		"image_banner",
+		"multirow_JeCrPg",
+		"collage_ekhVUA",
+		"multirow_Rc6kVK",
+		"featured_collection"
+	]
+}
