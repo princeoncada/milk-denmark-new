@@ -4,7 +4,12 @@ module.exports = {
   important: true,
   content: ["./**/*.{html,js,css,liquid}"],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            'nanum': ["'Nanum Myeongjo', serif"],
+            'causten': ["'Causten'"],
+        },
+    },
   },
   plugins: [],
 }

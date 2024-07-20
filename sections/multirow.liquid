@@ -43,10 +43,10 @@
 -%}
 
 <section>
-  <div class="x-flex x-flex-col x-max-w-[1440px] x-py-[64px] x-px-[25px]  x-mx-auto x-gap-[40px]">
+  <div class="x-flex x-flex-col md:x-flex-row x-max-w-[1440px] x-py-[64px] x-px-[25px] x-mx-auto x-gap-[40px] md:x-gap-[20px] lg:x-p-[104px] lg:x-gap-[56px]">
     {%- for block in section.blocks -%}
 
-            <div class="x-w-full x-h-[480px] x-bg-black">
+            <div class="x-w-full x-h-[390px] md:x-h-[320px] md:x-min-w-[340px] lg:x-min-w-[604px] lg:x-min-h-[480px] x-bg-black x-rounded-[16px]">
                 {% comment %} {%- if block.settings.image != blank -%}
                 {%- capture sizes -%}
                   (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
@@ -63,15 +63,13 @@
             </div>
             <div class="x-flex x-flex-col x-justify-center x-gap-[24px]">
                 {%- if block.settings.heading -%}
-                    <h2>{{ block.settings.heading }}</h2>
+                    <h2 class="x-font-semibold x-text-[28px] x-leading-[35px] lg:x-text-[32px]">{{ block.settings.heading }}</h2>
                 {%- endif -%}
                 {%- if block.settings.text -%}
-                    {{ block.settings.text }}
+                    <h2 class="x-text-[18px] x-leading-[24px] lg:x-text-[24px] lg:x-leading-[32px]">{{ block.settings.text }}</h2>
                 {%- endif -%}
             </div>
     
-              
-
             {%- endfor -%}
             </div>
 </section>
