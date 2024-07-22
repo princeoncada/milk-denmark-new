@@ -18,18 +18,21 @@
         "name": "Content Two",
         "type": "content-two",
         "settings": {
+            "title": "Content Two"
         }
       },
       "collections": {
         "name": "Collections",
         "type": "collections",
         "settings": {
+            "title": "Collections"
         }
       },
       "content-three": {
         "name": "Content Three",
         "type": "content-three",
         "settings": {
+            "title": "Content Three"
         }
       },
       "best-sellers": {
