@@ -1,33 +1,39 @@
 {
     "sections": {
       "hero": {
+        "name": "Hero",
         "type": "hero",
         "settings": {
           "title": "Hero"
         }
       },
       "content-one": {
+        "name": "Content One",
         "type": "content-one",
         "settings": {
           "title": "Content One"
         }
       },
       "content-two": {
+        "name": "Content Two",
         "type": "content-two",
         "settings": {
         }
       },
       "collections": {
+        "name": "Collections",
         "type": "collections",
         "settings": {
         }
       },
       "content-three": {
+        "name": "Content Three",
         "type": "content-three",
         "settings": {
         }
       },
       "best-sellers": {
+        "name": "Best Sellers",
         "type": "best-sellers",
         "settings": {
           "title": "Best Sellers Collection",
