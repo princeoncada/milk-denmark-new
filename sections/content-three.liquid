@@ -1,0 +1,31 @@
+<style>
+    .content-three-bg {
+        background: url({{ 'content-3-image.jpeg' | asset_img_url: '3000x3000' }});
+        background-size: 100%;
+        background-position: 50% 50%;
+    }
+
+    @media (min-width: 1024px) {
+        .content-three-bg {
+            background-size: 100%;
+            background-position: 50% 23%;
+        }
+    }
+</style>
+
+<section class="x-w-full x-bg-white">
+    <div class="x-py-[64px] x-px-[25px] x-flex x-flex-col md:x-flex-row x-gap-[40px] md:x-gap-[20px] lg:x-gap-[56px] lg:x-p-[104px] x-max-w-[1440px] x-mx-auto">
+        <div class="content-three-bg x-h-[400px] md:x-h-[320px] md:x-w-[340px] min-[425px]:x-h-[440px] lg:x-h-[480px] lg:x-w-[45%] x-w-full x-rounded-[16px]">
+        </div>
+        <div class="x-flex x-flex-col x-justify-center x-gap-[24px] md:x-w-[360px] lg:x-w-[55%]">
+            <h1 class="x-text-[28px] x-font-semibold x-leading-[35px] lg:x-text-[32px] lg:x-leading-[40px]">
+                A deeper commitment
+            </h1>
+            <h2 class="x-text-[18px] x-leading-[24px] lg:x-text-[24px] lg:x-leading-[32px]">
+                Every MILK™ babygrow tells the story of childhood fashion, but with sketches in the place of words. Inspired by afternoon walks through autumn and spring, each flower bud is a tickle of nature in the form of a sweet silhouette. The soft textures swaddle more than baby&apos;s skin, but envelope families in the patterns of fairytale fashions. Designed with heart, inspired in Denmark.
+            </h2>
+        </div>
+    </div>
+</section>
+
+

@@ -1,1 +1,54 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"newsletter_FCDLr9":{"type":"newsletter","blocks":{"heading_Lh6r6m":{"type":"heading","settings":{"heading":"Get Notified about exclusive deals","heading_size":"h1"}},"paragraph_DmdHzz":{"type":"paragraph","settings":{"text":"<p>Subscribe to get special offers, free giveaways and early access. We promise to send emails you will love.<\/p>"}},"email_form_iMNU6p":{"type":"email_form","settings":{}}},"block_order":["heading_Lh6r6m","paragraph_DmdHzz","email_form_iMNU6p"],"settings":{"color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":52}},"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":false,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["newsletter_FCDLr9","footer"]}
+{
+	"name": "t:sections.footer.name",
+	"type": "footer",
+	"sections": {
+		"newsletter_FCDLr9": {
+			"type": "newsletter",
+			"blocks": {
+				"heading_Lh6r6m": {
+					"type": "heading",
+					"settings": {
+						"heading": "Get Notified about exclusive deals",
+						"heading_size": "h1"
+					}
+				},
+				"paragraph_DmdHzz": {
+					"type": "paragraph",
+					"settings": {
+						"text": "<p>Subscribe to get special offers, free giveaways and early access. We promise to send emails you will love.</p>"
+					}
+				},
+				"email_form_iMNU6p": { "type": "email_form", "settings": {} }
+			},
+			"block_order": [
+				"heading_Lh6r6m",
+				"paragraph_DmdHzz",
+				"email_form_iMNU6p"
+			],
+			"settings": {
+				"color_scheme": "",
+				"full_width": true,
+				"padding_top": 40,
+				"padding_bottom": 52
+			}
+		},
+		"footer": {
+			"type": "footer",
+			"settings": {
+				"color_scheme": "scheme-1",
+				"newsletter_enable": false,
+				"newsletter_heading": "Subscribe to our emails",
+				"enable_follow_on_shop": true,
+				"show_social": true,
+				"enable_country_selector": true,
+				"enable_language_selector": true,
+				"payment_enable": true,
+				"show_policy": true,
+				"margin_top": 0,
+				"padding_top": 36,
+				"padding_bottom": 36
+			}
+		}
+	},
+	"order": ["newsletter_FCDLr9", "footer"]
+}

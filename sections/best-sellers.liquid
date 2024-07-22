@@ -1,0 +1,113 @@
+{% comment %}
+  <div class="flex flex-col items-center my-8">
+      <h1 class="text-center text-3xl">{{ section.settings.title }}</h1>
+
+      <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              {% for product in section.settings.featured_collection.products limit:
+              section.settings.number_of_products_to_show %}
+              {% render 'product-card', product_product: product %}
+              {% else %}
+              {% for item in (1..4) %}
+              {% render 'product-card-placeholder' %}
+              {% endfor %}
+              {% endfor %}
+          </div>
+      </div>
+  </div>
+{% endcomment %}
+
+<section class="x-bg-[#F6F0E4] x-w-full">
+  <div
+    class="x-flex x-flex-col x-gap-10 lg:x-gap-16 x-text-[#282828] x-py-[64px] x-px-[25px] lg:x-py-[80px] lg:x-px-[104px] x-max-w-[1440px] x-mx-auto"
+  >
+    <h1 class="x-text-[28px] x-font-semibold x-leading-9 lg:x-text-[32px] lg:x-leading-10">Bestsellers</h1>
+    <div class="x-flex x-flex-row x-overflow-auto lg:x-overflow-hidden x-gap-4 lg:x-gap-9 x-snap-x no-scrollbar">
+      {% for product in section.settings.featured_collection.products
+        limit: section.settings.number_of_products_to_show
+      %}
+        {% comment %} start card {% endcomment %}
+        <a href="{{ product.url }}" class="x-flex x-flex-col x-gap-4 x-min-w-[222px] x-snap-start lg:x-snap-none">
+          <div>
+            <img
+              src="{{ product.featured_image | image_url: width: 1000, height: 1000 }}"
+              alt="{{ product.featured_image.alt }}"
+              width="100%"
+              height="100%"
+              class="x-transition-all x-ease-in-out x-duration-500 x-hover:scale-105"
+            >
+            <div class="x-w-full x-h-0.5 x-bg-black">
+            </div>
+          </div>
+          <div class="x-flex x-flex-col x-gap-[8px]">
+            <div class="x-flex x-flex-row x-justify-between x-text-[18px] x-leading-[24px] x-font-semibold x-font-nanum">
+              <div>{{ product.title }}</div>
+              <div>{{ product.first_available_variant.price | money_without_currency | remove: '.00' }} USD</div>
+            </div>
+            <div class="x-flex x-flex-row x-justify-between x-leading-[20px] x-font-nanum">
+              <div>{{ product.variants[1].title }}</div>
+              <div class="x-line-through">
+                {{ product.variants[1].price | money_without_currency | remove: '.00' }} USD
+              </div>
+            </div>
+          </div>
+        </a>
+        {% comment %} end card {% endcomment %}
+      {% else %}
+        <a href="#" class="x-flex x-flex-col x-gap-4 x-min-w-[222px] x-snap-start lg:x-snap-none">
+          <div>
+            <img
+              src="{{ "1.png" |  asset_img_url: "1000x1000" }}"
+              alt=""
+              width="100%"
+              height="100%"
+              class="x-transition-all x-ease-in-out x-duration-500 x-hover:scale-105"
+            >
+          </div>
+          <div class="x-flex x-flex-col x-gap-2">
+            <div class="x-flex x-flex-row x-justify-between x-text-[18px] x-leading-6 x-font-semibold">
+              <div>Footie & Bonnet</div>
+              <div>35 USD</div>
+            </div>
+            <div class="x-flex x-flex-row x-justify-between x-leading-5 x-font-causten">
+              <div>Peach</div>
+              <div class="x-line-through">55 USD</div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured Collection",
+      "label": "Title"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "number_of_products_to_show",
+      "min": 4,
+      "max": 12,
+      "default": 4,
+      "label": "Number of products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

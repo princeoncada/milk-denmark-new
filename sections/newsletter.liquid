@@ -2,6 +2,19 @@
 {{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+    .cta-bg {
+        background-image: url({{ 'm-cta-bg.png' | asset_img_url: '390x454' }});
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    @media (min-width: 768px) {
+        .cta-bg {
+            background-image: url({{ 'd-cta-bg.png' | asset_img_url: '1280x386' }});
+        }
+    }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -15,15 +28,15 @@
   }
 {%- endstyle -%}
 
-<div class="newsletter center {% if section.settings.full_width == false %}newsletter--narrow page-width{% endif %}">
-  <div class="newsletter__wrapper color-{{ section.settings.color_scheme }} gradient content-container isolate{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
+<div class=" x-px-[25px] x-py-[64px] md:x-py-[88px] cta-bg" style="background-color: #D2CBB8;">
+  <div class="">
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when '@app' -%}
           {% render block %}
         {%- when 'heading' -%}
           <h2
-            class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} md:x-text-center x-font-semibold x-text-[30px] x-leading-[35px] lg:x-text-[32px] lg:leading-[40px]"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -34,21 +47,15 @@
           </h2>
         {%- when 'paragraph' -%}
           <div
-            class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
+            class="x-font-nanum x-text-[#282828] x-text-[18px] x-leading-[24px] x-mt-[24px] md:x-text-center md:x-w-[560px] md:x-mx-auto lg:x-text-[24px] lg:x-leading-[32px] lg:x-w-[727px]">
             {{ block.settings.text }}
           </div>
         {%- when 'email_form' -%}
-          <div {{ block.shopify_attributes }}>
+          <div {{ block.shopify_attributes }} class="x-mt-[40px]">
             {% form 'customer', class: 'newsletter-form' %}
               <input type="hidden" name="contact[tags]" value="newsletter">
               <div
-                class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="x-w-full"
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
@@ -59,7 +66,7 @@
                     id="NewsletterForm--{{ section.id }}"
                     type="email"
                     name="contact[email]"
-                    class="field__input"
+                    class="field__input x-rounded-xl"
                     value="{{ form.email }}"
                     aria-required="true"
                     autocorrect="off"

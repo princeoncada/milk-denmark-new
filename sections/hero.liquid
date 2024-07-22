@@ -1,0 +1,39 @@
+<style>
+    .hero-bg-img {
+        background: url({{ 'baby.jpg' | asset_img_url: '2400x1600' }});
+        background-position: center right -7rem;
+        background-size: cover;
+    }
+    @media (min-width: 768px) {
+        .hero-bg-img {
+            background-position: center center;
+        }
+    }
+</style>
+
+<section class="x-h-auto x-w-full x-flex x-justify-center x-items-center hero-bg-img">
+    <div class="x-py-[196px] md:x-pt-[320px] md:x-pb-[140px] lg:x-hidden">
+        {% render 'hero-content-mobile' %}
+    </div>
+    <div class="x-hidden lg:x-flex x-justify-center x-w-full x-p-20 x-py-20 md:x-py-36 md:x-px-32 lg:x-py-[256px] lg:x-px-[184px] x-max-w-[1440px]">{% render 'hero-content' %}</div>
+</section>
+
+
+{% schema %}
+{
+    "name": "Hero",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default":"Hero",
+            "label": "Title"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Hero"
+        }
+    ]
+}
+{% endschema %}
