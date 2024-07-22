@@ -8,50 +8,49 @@
 * ------------------------------------------------------------
 */
 {
-    "sections": {
-      "hero": {
-        "type": "hero",
-        "settings": {
-          "title": "Hero"
-        }
-      },
-      "content-one": {
-        "type": "content-one",
-        "settings": {
-          "title": "Content One"
-        }
-      },
-      "content-two": {
-        "type": "content-two",
-        "settings": {
-        }
-      },
-      "collections": {
-        "type": "collections",
-        "settings": {
-        }
-      },
-      "content-three": {
-        "type": "content-three",
-        "settings": {
-        }
-      },
-      "best-sellers": {
-        "type": "best-sellers",
-        "settings": {
-          "title": "Best Sellers Collection",
-          "featured_collection": "best-sellers",
-          "number_of_products_to_show": 4
-        }
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "title": "Hero"
       }
     },
-    "order": [
-      "hero",
-      "content-one",
-      "content-two",
-      "collections",
-      "content-three",
-      "best-sellers",
-    ]
-  }
-  
+    "content-one": {
+      "type": "content-one",
+      "settings": {
+        "title": "Content One"
+      }
+    },
+    "content-two": {
+      "type": "content-two",
+      "settings": {
+      }
+    },
+    "collections": {
+      "type": "collections",
+      "settings": {
+      }
+    },
+    "content-three": {
+      "type": "content-three",
+      "settings": {
+      }
+    },
+    "best-sellers": {
+      "type": "best-sellers",
+      "settings": {
+        "title": "Best Sellers Collection",
+        "featured_collection": "best-sellers",
+        "number_of_products_to_show": 4
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "content-one",
+    "content-two",
+    "collections",
+    "content-three",
+    "best-sellers"
+  ]
+}
