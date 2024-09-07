@@ -42,8 +42,8 @@
       "type": "header",
       "custom_css": [
         "@media (min-width: 990px) {nav.header__inline-menu {\/* display: flex; *\/ }}",
-        "nav.header__inline-menu {\/* position: absolute; *\/ \/* display: hidden; *\/ \/* justify-content: center; *\/ \/* width: 100%; *\/ \/* left: 0; *\/ font-family: \"Nanum Myeonjo\"; font-size: 16px; \/* z-index: 0; *\/}",
-        "h1.header__heading {\/* position: relative; *\/ \/* z-index: 5; *\/}"
+        "nav.header__inline-menu {\/* position: absolute; *\/ \/* display: hidden; *\/ \/* justify-content: center; *\/ \/* width: 100%; *\/ \/* left: 0; *\/ font-family: \"Nanum Myeonjo\"; font-size: 16px; \/* z-index: 0; *\/ width: 100%; display: flex; justify-content: center;}",
+        ".header {display: flex;}"
       ],
       "settings": {
         "logo_position": "middle-left",
