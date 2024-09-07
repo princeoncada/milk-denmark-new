@@ -763,6 +763,10 @@ video {
   gap: 40px !important;
 }
 
+.x-gap-\[64px\] {
+  gap: 64px !important;
+}
+
 .x-gap-\[80px\] {
   gap: 80px !important;
 }
@@ -812,6 +816,11 @@ video {
 .x-bg-\[\#445442\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(68 84 66 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#77705F\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(119 112 95 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-\[\#F6F0E4\] {

@@ -1,10 +1,10 @@
 {% comment %} mobile-view {% endcomment %}
-<footer class="x-bg-[#445442] x-text-[#F6F0E4] x-flex x-flex-col x-gap-16 x-py-16 x-px-6 md:x-hidden">
+<footer class="x-bg-[#445442] x-text-[#F6F0E4] x-flex x-flex-col x-gap-[64px] x-py-[64px] x-px-[24px] md:x-hidden">
     <div>{% render 'logo-milk-footer' %}</div>
-    <div class="x-flex x-flex-col x-gap-8">
+    <div class="x-flex x-flex-col x-gap-[32px]">
         <div class="x-flex x-flex-row x-gap-[40px]">
             <div class="x-flex x-flex-col x-gap-[16px] x-w-[106px]">
-                <h1 class="x-text-[20px] x-font-medium x-font-causten x-leading-[24px]">SHOP</h1>
+                <h1 class="x-text-[20px] x-font-medium x-font-causten x-leading-[24px] x-text-[#F6F0E4]">SHOP</h1>
                 {% for link in linklists['footer-shop'].links %}
                     <a
                         href='{{ link.url }}'
@@ -14,7 +14,7 @@
                 {% endfor %}
             </div>
             <div class="x-flex x-flex-col x-gap-[16px]">
-                <h1 class="x-text-[20px] x-font-medium x-font-causten x-leading-[24px]">USERS</h1>
+                <h1 class="x-text-[20px] x-font-medium x-font-causten x-leading-[24px] x-text-[#F6F0E4]">USERS</h1>
                 {% for link in linklists['footer-users'].links %}
 					<a
 						href='{{ link.url }}'
@@ -26,7 +26,7 @@
         </div>
         <div class="x-flex x-flex-row x-gap-[40px]">
             <div class="x-flex x-flex-col x-gap-[16px] x-w-[106px]">
-                <h1 class="x-text-[20px] x-font-medium x-font-causten x-leading-[24px]">COMPANY</h1>
+                <h1 class="x-text-[20px] x-font-medium x-font-causten x-leading-[24px] x-text-[#F6F0E4]">COMPANY</h1>
                 {% for link in linklists['footer-company'].links %}
 					<a
 						href='{{ link.url }}'
@@ -60,7 +60,8 @@
 				</a>
             </div>
         </div>
-        <div class="x-bg-[#F6F0E4] x-h-[1px] x-w-full"></div>
+        <div class="x-bg-[#F6F0E4] x-h-[1px] x-w-full">
+        </div>
         <div class="x-font-semibold x-leading-[24px] x-font-nanum">
             © 2024 Milk DENMARK.<br>
             All rights reserved.
@@ -88,7 +89,7 @@
         </div>
         <div class="x-flex x-flex-row x-gap-[80px]">
             <div class="x-flex x-flex-col x-gap-[16px]">
-                <h1 class="x-font-causten x-leading-[24px]">SHOP</h1>
+                <h1 class="x-font-causten x-leading-[24px] x-text-[#F6F0E4]">SHOP</h1>
                 <div class="x-flex x-flex-col x-gap-[8px] x-font-nanum x-tracking-[0px]">
                     {% for link in linklists['footer-shop'].links %}
                         <a href='{{ link.url }}'>
@@ -98,7 +99,7 @@
                 </div>
             </div>
             <div class="x-flex x-flex-col x-gap-[16px]">
-                <h1 class="x-font-causten x-leading-[24px]">USERS</h1>
+                <h1 class="x-font-causten x-leading-[24px] x-text-[#F6F0E4]">USERS</h1>
                 <div class="x-flex x-flex-col x-gap-[8px] x-font-nanum x-tracking-[0px]">
                     {% for link in linklists['footer-users'].links %}
                         <a href='{{ link.url }}'>
@@ -108,7 +109,7 @@
                 </div>
             </div>
             <div class="x-flex x-flex-col x-gap-[16px]">
-                <h1 class="x-font-causten x-leading-[24px]">COMPANY</h1>
+                <h1 class="x-font-causten x-leading-[24px] x-text-[#F6F0E4]">COMPANY</h1>
                 <div class="x-flex x-flex-col x-gap-[8px] x-font-nanum x-tracking-[0px]">
                     {% for link in linklists['footer-company'].links %}
                         <a href='{{ link.url }}'>
