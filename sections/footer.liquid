@@ -15,13 +15,16 @@
             </div>
             <div class="x-flex x-flex-col x-gap-[16px]">
                 <h1 class="x-text-[20px] x-font-medium x-font-causten x-leading-[24px] x-text-[#F6F0E4]">USERS</h1>
-                {% for link in linklists['footer-users'].links %}
 					<a
-						href='{{ link.url }}'
+						href='{{ routes.account_url }}'
 						class='x-text-[18px] x-font-semibold x-leading-[24px] x-font-nanum x-tracking-[0px]'>
-						{{ link.title }}
+						Account
 					</a>
-				{% endfor %}
+					<a
+						href='{{ routes.cart_url }}'
+						class='x-text-[18px] x-font-semibold x-leading-[24px] x-font-nanum x-tracking-[0px]'>
+						Cart
+					</a>
             </div>
         </div>
         <div class="x-flex x-flex-row x-gap-[40px]">
@@ -101,11 +104,8 @@
             <div class="x-flex x-flex-col x-gap-[16px]">
                 <h1 class="x-font-causten x-leading-[24px] x-text-[#F6F0E4]">USERS</h1>
                 <div class="x-flex x-flex-col x-gap-[8px] x-font-nanum x-tracking-[0px]">
-                    {% for link in linklists['footer-users'].links %}
-                        <a href='{{ link.url }}'>
-                            {{- link.title -}}
-                        </a>
-                    {% endfor %}
+                    <a href='{{ routes.account_url }}'>Account</a>
+                    <a href='{{ routes.cart_url }}'>Cart</a>
                 </div>
             </div>
             <div class="x-flex x-flex-col x-gap-[16px]">
