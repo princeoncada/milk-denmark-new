@@ -2216,6 +2216,14 @@ html {
   height: 100% !important;
 }
 
+.x-h-\[\] {
+  height:  !important;
+}
+
+.x-h-\[200px\] {
+  height: 200px !important;
+}
+
 .x-w-1 {
   width: 0.25rem !important;
 }
@@ -2721,6 +2729,11 @@ html {
 .x-text-white {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+.x-text-black {
+  --tw-text-opacity: 1 !important;
+  color: rgb(0 0 0 / var(--tw-text-opacity)) !important;
 }
 
 .x-line-through {
