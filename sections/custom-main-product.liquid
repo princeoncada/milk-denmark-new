@@ -1,0 +1,477 @@
+<section class="x-max-w-[1280px] x-mx-auto">
+    <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px] x-p-[16px] x-py-[32px]">
+
+        <div class="x-flex md:x-hidden x-flex-col x-gap-[10px]">
+            <div class="x-flex x-flex-col">
+                <div>{{ product.title }}</div>
+                <div>Varies depending on </div>
+            </div>
+            <div>$15.00</div>
+        </div>
+
+        <div class="x-w-full x-flex x-flex-col x-gap-[10px]">
+            <div class="carousel-product">
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">
+                    <button class="carousel-f-button">
+                        +
+                    </button>
+                </div>
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">
+                    <button class="carousel-f-button">
+                        +
+                    </button>
+                </div>
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">
+                    <button class="carousel-f-button">
+                        +
+                    </button>
+                </div>
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">
+                    <button class="carousel-f-button">
+                        +
+                    </button>
+                </div>
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">
+                    <button class="carousel-f-button">
+                        +
+                    </button>
+                </div>
+            </div>
+            <div class="carousel-nav md:x-block x-hidden">
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">&nbsp;</div>
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">&nbsp;</div>
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">&nbsp;</div>
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">&nbsp;</div>
+                <div class="carousel-cell"
+                    style="background-image: url({{ '400.svg' | asset_url }}); background-size:contain">&nbsp;</div>
+            </div>
+        </div>
+
+        <div class="x-flex x-flex-col x-gap-[16px] x-w-full">
+            <div class="md:x-flex x-flex-col x-gap-[10px] x-hidden">
+                <div class="x-flex x-flex-col">
+                    <div>The Printed Short Sleeve Tee</div>
+                    <div>Chloe</div>
+                </div>
+                <div>$15.00</div>
+            </div>
+
+            <div class="x-mt-[10px]">
+                Reviews (if available, else hide)
+            </div>
+
+            <div class="x-flex x-flex-col x-gap-[10px]">
+                <div>
+                    <div class="swatch-group core">
+                        Core | <span class="sub">Delilah</span>
+                    </div>
+                    <div class="x-flex x-gap-[4px]">
+                        <label>
+                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="core"
+                                data-self="Delilah" checked>
+                            <div class="swatch-variant"
+                                style="background-color: red; background-image: url({{ 'sw1.png' | asset_url }}); background-position: 50% 50%;">
+                                &nbsp;
+                            </div>
+                        </label>
+                        <label>
+                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="core"
+                                data-self="Forest">
+                            <div class="swatch-variant"
+                                style="background-color: red; background-image: url({{ 'sw2.png' | asset_url }}); background-position: 50% 50%;">
+                                &nbsp;
+                            </div>
+                        </label>
+                        <label>
+                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="core"
+                                data-self="Fairy">
+                            <div class="swatch-variant" style="background-color: green;">&nbsp;</div>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <div class="swatch-group special">
+                        Special Prices | <span class="sub"></span>
+                    </div>
+                    <div class="x-flex x-gap-[4px]">
+                        <label>
+                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="special"
+                                data-self="Cool">
+                            <div class="swatch-variant" style="background-color: yellow;">&nbsp;</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="special"
+                                data-self="Smart">
+                            <div class="swatch-variant" style="background-color: magenta;">&nbsp;</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="special"
+                                data-self="Angsty">
+                            <div class="swatch-variant" style="background-color: cyan;">&nbsp;</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="x-underline">
+                    Shop All <span class="group-sub">Delilah</span>
+                </div>
+            </div>
+
+            <div class="x-flex x-flex-col x-gap-[10px]">
+                <div class="x-flex x-gap-[10px]">
+                    <div class="size-group">
+                        Size | <span class="sub">0m</span>
+                    </div>
+                    <button class="x-border">
+                        SIZE GUIDE
+                    </button>
+                </div>
+                <div class="x-flex x-gap-[8px] x-flex-wrap">
+                    <label>
+                        <input type="radio" name="variant-size" class="swatch-input__hidden" data-self="0m" checked>
+                        <div class="text-variant">0m</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="variant-size" class="swatch-input__hidden" data-self="3m">
+                        <div class="text-variant">3m</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="variant-size" class="swatch-input__hidden" data-self="6m">
+                        <div class="text-variant">6m</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="variant-size" class="swatch-input__hidden" data-self="9m">
+                        <div class="text-variant">9m</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="variant-size" class="swatch-input__hidden" data-self="12m">
+                        <div class="text-variant">12m</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="variant-size" class="swatch-input__hidden" data-self="18m">
+                        <div class="text-variant">18m</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="variant-size" class="swatch-input__hidden" data-self="24m">
+                        <div class="text-variant">24m</div>
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <div class="x-inline-block">
+                    <div
+                        class="quantity-picker x-flex x-border-[1px] x-border-gray-300 x-gap-[12px] x-items-center x-justify-between">
+                        <button class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                            id="decrease">
+                            <i class="bx bx-minus"></i>
+                        </button>
+                        <input type="text" disabled="true" id="quantity" value="1" readonly
+                            class="x-text-center x-w-[30px] x-bg-transparent x-border-none x-outline-none">
+                        <button class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                            id="increase">
+                            <i class="bx bx-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                FREQUENTLY BOUGHT TOGETHER (CO-DEVELOPER TASK)
+            </div>
+
+            <div class="x-flex x-gap-[16px]">
+                <button class="x-border x-py-[12px] x-flex-1">
+                    Add to Cart
+                </button>
+                <button class="x-border x-py-[12px] x-flex-1">
+                    Something Pay With
+                </button>
+            </div>
+
+            <div class="x-w-full">
+                <div class="x-flex x-w-full">
+                    <button class="content-btn x-flex-1 x-py-[12px] x-border x-underline">View 1</button>
+                    <button class="content-btn x-flex-1 x-py-[12px] x-border">View 2</button>
+                    <button class="content-btn x-flex-1 x-py-[12px] x-border">View 3</button>
+                </div>
+                <div class="x-border">
+                    <div class="product-content x-p-[16px]">Content 1</div>
+                    <div class="product-content x-hidden x-p-[16px]">Content 2</div>
+                    <div class="product-content x-hidden x-p-[16px]">Content 3</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* external css: flickity.css */
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+    }
+
+    .carousel-product {
+        background: #FAFAFA;
+    }
+
+    .carousel-product .flickity-page-dots {
+        display: flex;
+        flex-direction: row;
+        bottom: -20px;
+    }
+
+    .carousel-product .flickity-page-dots .dot {
+        height: 4px;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .carousel-product .carousel-cell {
+        width: 66%;
+        aspect-ratio: 1/1;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    .carousel-product.is-fullscreen {
+        z-index: 9999;
+    }
+
+    .carousel-product:not(.is-fullscreen) .carousel-f-button {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #333;
+        color: white;
+    }
+
+    .carousel-product.is-fullscreen .carousel-f-button {
+        display: none;
+    }
+
+    .carousel-product.is-fullscreen .flickity-viewport {
+        height: 100% !important;
+    }
+
+    .carousel-product.is-fullscreen .flickity-slider {
+        display: flex;
+        align-items: center;
+    }
+
+    .carousel-product .flickity-fullscreen-button-view {
+        display: none;
+    }
+
+    .carousel-product.is-fullscreen .carousel-cell {
+        width: 95%;
+        margin-right: 20px;
+    }
+
+    .swatch-input__hidden {
+        display: none;
+    }
+
+    .swatch-variant {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        border: 2px solid white;
+        transition: box-shadow 0.2s;
+        cursor: pointer;
+    }
+
+    input:checked+.swatch-variant {
+        box-shadow: 0 0 0 2px gray;
+    }
+
+    .carousel-product:not(.is-fullscreen) .flickity-button.previous,
+    .carousel-product:not(.is-fullscreen) .flickity-button.next {
+        display: none;
+    }
+
+    .carousel-nav .carousel-cell {
+        margin-right: 10px;
+        width: 20%;
+        aspect-ratio: 1/1;
+    }
+
+    .carousel-nav .flickity-button,
+    .carousel-nav .flickity-page-dots {
+        display: none;
+    }
+
+    .carousel-cell.is-nav-selected {
+        border: 2px solid gray;
+    }
+
+    .text-variant {
+        padding: 10px 20px;
+        background-color: #e2e0dd;
+        color: #505864;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+
+    input:checked+.text-variant {
+        background-color: #505864;
+        color: #f3f0ee;
+    }
+
+    @media (min-width: 990px) {
+        .carousel-product .carousel-cell {
+            width: 100%;
+        }
+
+        .carousel-product .flickity-page-dots {
+            display: none;
+        }
+
+        .carousel-product.is-fullscreen .carousel-cell {
+            width: 60%;
+            margin-right: 20px;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .carousel-product.is-fullscreen .carousel-cell {
+            width: 60%;
+            margin-right: 20px;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .carousel-product.is-fullscreen .carousel-cell {
+            width: 40%;
+            margin-right: 20px;
+        }
+    }
+</style>
+
+<script>
+
+    $(window).on('load', function () {
+        setCarouselProduct();
+        setCarouselNav();
+        setSwatchSub();
+        setSizeGuide();
+        setQuantity();
+        setProductContent();
+    });
+
+    function setProductContent() {
+        let btns = $('.content-btn');
+        let contents = $('.product-content');
+
+        btns.on('click', function () {
+            let index = $(this).index();
+            btns.removeClass('x-underline');
+            $(this).addClass('x-underline');
+            contents.addClass('x-hidden');
+            contents.eq(index).removeClass('x-hidden');
+        });
+    }
+
+    function setCarouselNav() {
+        $('.carousel-nav').flickity({
+            asNavFor: '.carousel-product',
+            contain: true,
+            pageDots: false,
+            prevNextButtons: false
+        });
+    }
+
+    function setSwatchSub() {
+        let swatches = $('[name="variant-swatch"]');
+
+        swatches.on('change', function () {
+            let shopAll = $('.group-sub');
+            let group = $(this).data('group');
+            let value = $(this).data('self');
+            let sub = $(`.swatch-group.${group} .sub`);
+            $('.swatch-group .sub').text('');
+            sub.text(value);
+            shopAll.text(value);
+        });
+    }
+
+    function setSizeGuide() {
+        let sizes = $('[name="variant-size"]');
+
+        sizes.on('change', function () {
+            let value = $(this).data('self');
+            let sub = $('.size-group .sub');
+            sub.text(value);
+        });
+    }
+
+    function setQuantity() {
+        $('#increase').click(function () {
+            let quantity = parseInt($('#quantity').val());
+            $('#quantity').val(quantity + 1);
+            $('#decrease').find('i').removeAttr('disabled');
+        });
+
+        $('#decrease').click(function () {
+            let quantity = parseInt($('#quantity').val());
+            if (quantity > 1) {
+                $('#quantity').val(quantity - 1);
+            }
+
+            if (quantity == 2) {
+                $('#decrease').find('i').attr('disabled', true);
+            }
+        });
+    }
+
+    function setCarouselProduct() {
+        let $carousel = $('.carousel-product').flickity({
+            // options
+            contain: true,
+            fullscreen: true,
+        });
+
+        // on click of the carousel-f-button, add class 'is-fullscreen' to the .carousel
+        $('.carousel-f-button').on('click', function () {
+            // get the index of the clicked carousel-cell
+            $carousel.flickity('viewFullscreen');
+            let index = $(this).closest('.carousel-cell').index();
+            $carousel.flickity('select', index);
+        });
+
+        $carousel.on('fullscreenChange.flickity', function (event, isFullscreen) {
+            // contain: false when in fullscreen
+            $('.carousel-product').flickity({
+                contain: !isFullscreen,
+                fullscreen: true,
+                prevNextButtons: false
+            });
+        });
+
+        $carousel.on('change.flickity', function (event, index) {
+            $('.carousel-nav').flickity('select', index);
+            $('.carousel-nav').find('.carousel-cell').removeClass('is-nav-selected');
+            $('.carousel-nav').find('.carousel-cell').eq(index).addClass('is-nav-selected');
+        });
+    }
+</script>
