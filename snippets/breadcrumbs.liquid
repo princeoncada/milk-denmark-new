@@ -1,0 +1,35 @@
+{% assign t = template | split: '.' | first %}
+
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+        <span>
+            <a href="/" title="Home">Home</a> / 
+        </span>
+
+        {% case t %}
+
+        {% when 'page' %}
+
+            <span>
+                <a href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+            </span>
+
+        {% when 'product' %}
+            
+            {% if product.collections.first %}
+                <span>
+                    <a href="{{ product.collections.first.url }}" aria-current="page">{{ product.collections.first.title }}</a> / 
+                </span>
+            {% endif %}
+
+            <span>
+                <a href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+            </span>
+
+        {% else %}
+
+            <span aria-current="page">
+                <a href="{{ request.path }}" aria-current="page">{{ page_title }}</a>
+            </span>
+
+        {% endcase %}
+</nav>
