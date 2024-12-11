@@ -4,135 +4,106 @@
 
 
 <section class="x-max-w-[1280px] x-mx-auto">
-        <div class="x-text-center md:x-text-start x-py-[10px] x-text-[12px]">
-            breadcrumb
+        <div class="x-text-center md:x-text-start x-py-[20px] x-text-[12px]">
+            {% include 'breadcrumbs' %}
         </div>
         <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px]">
 
-            <div class="x-w-full x-flex x-flex-col x-gap-[10px]">
-                <div class="carousel-product">
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
-                        <button class="carousel-f-button">
-                            +
-                        </button>
+            <div class="x-w-full x-relative">
+                <div class="x-flex x-flex-col x-gap-[10px] x-sticky x-top-[18px] x-pb-[18px]">
+                    <div class="carousel-product">
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
+                            <button class="carousel-f-button">
+                                +
+                            </button>
+                        </div>
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
+                            <button class="carousel-f-button">
+                                +
+                            </button>
+                        </div>
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
+                            <button class="carousel-f-button">
+                                +
+                            </button>
+                        </div>
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
+                            <button class="carousel-f-button">
+                                +
+                            </button>
+                        </div>
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
+                            <button class="carousel-f-button">
+                                +
+                            </button>
+                        </div>
                     </div>
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
-                        <button class="carousel-f-button">
-                            +
-                        </button>
+                    <div class="carousel-nav md:x-block x-hidden">
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
+                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
                     </div>
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
-                        <button class="carousel-f-button">
-                            +
-                        </button>
-                    </div>
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
-                        <button class="carousel-f-button">
-                            +
-                        </button>
-                    </div>
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
-                        <button class="carousel-f-button">
-                            +
-                        </button>
-                    </div>
-                </div>
-                <div class="carousel-nav md:x-block x-hidden">
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain"></div>
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain"></div>
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain"></div>
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain"></div>
-                    <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain"></div>
                 </div>
             </div>
 
-            <div class="x-flex x-flex-col x-gap-[16px] md:x-gap-[32px] x-w-full x-p-[18px] x-pt-[25px]">
+            <div class="x-flex x-flex-col x-gap-[16px] md:x-gap-[32px] x-w-full x-p-[18px] x-pt-[25px] md:x-pt-[0px]">
                 <div class="x-flex x-flex-col x-gap-[10px]">
-                    <div class="x-text-[18px] md:x-text-[20px] x-tracking-[0.6px]">The Printed Short Sleeve Tee</div>
+                    <div class="x-text-[18px] md:x-text-[20px] x-tracking-[0.6px]">{{ product.title }}</div>
                     <div class="x-flex md:x-flex-col x-justify-between">
-                        <div class="x-text-[14px] md:x-text-[16px] x-tracking-[0.6px] swatch-group core"><span class="sub">Delilah</span>
+                        <div class="x-text-[14px] md:x-text-[16px] x-tracking-[0.6px]"><span class="sub">{{ product.options_with_values.first.values.first }}</span>
                         </div>
                         <div class="x-text-[14px] md:x-text-[16px] md:x-pt-[32px] x-tracking-[0.6px]">15.00 USD</div>
                     </div>
                 </div>
 
-                <div class="x-py-[20px] x-pl-[6px]">
-                    <div class="x-flex x-gap-[18px]">
-                        <label>
-                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="core"
-                                data-self="Delilah" checked>
-                            <div class="swatch-variant"
-                                style="background-color: red; background-image: url({{ "sw1.png" | asset_url }}); background-position: 50% 50%;">&nbsp;
+                {% for option in product.options_with_values %}
+                    {% if option.name != "Color" %}
+                        <div class="x-flex x-flex-col x-gap-[12px]">
+                            <div class="x-flex x-flex-col x-gap-[10px]">
+                                <div class="x-text-[14px] x-tracking-[0.4px]">
+                                    {{ option.name }}
+                                </div>
+                                <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
+                                    {% for value in option.values %}
+                                        <label>
+                                    <input type="radio" name="size" class="swatch-input__hidden" value="{{ value }}" id="" {% if value == option.values.first %} checked {% endif %}/>
+                                            <div class="text-variant">{{ value }}</div>
+                                        </label>
+                                    {% endfor %}
+                                </div>
                             </div>
-                        </label>
-                        <label>
-                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="core"
-                                data-self="Forest">
-                            <div class="swatch-variant"
-                                style="background-color: red; background-image: url({{ "sw2.png" | asset_url }}); background-position: 50% 50%;">&nbsp;
+                            <div>
+                                <button class="size-guide-btn x-text-[14px] x-underline x-tracking-[0.4px]">
+                                    Size guide
+                                </button>
                             </div>
-                        </label>
-                        <label>
-                            <input type="radio" name="variant-swatch" class="swatch-input__hidden" data-group="core"
-                                data-self="Fairy">
-                            <div class="swatch-variant" style="background-color: green;">&nbsp;</div>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="x-flex x-flex-col x-gap-[12px]">
-                    <div class="x-flex x-flex-col x-gap-[10px]">
-                        <div class="x-text-[14px] x-tracking-[0.4px]">
-                            Baby
                         </div>
-                        <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
-                            <label>
-                                <input type="radio" name="size" class="swatch-input__hidden" id="">
-                                <div class="text-variant">50/56 (0-2M)</div>
-                            </label>
-                            <label>
-                                <input type="radio" name="size" class="swatch-input__hidden" id="">
-                                <div class="text-variant">50/56 (0-2M)</div>
-                            </label>
-                            <label>
-                                <input type="radio" name="size" class="swatch-input__hidden" id="">
-                                <div class="text-variant">50/56 (0-2M)</div>
-                            </label>
-                            <label>
-                                <input type="radio" name="size" class="swatch-input__hidden" id="">
-                                <div class="text-variant">50/56 (0-2M)</div>
-                            </label>
+                    {% else %}
+                        <div class="x-py-[20px] x-pl-[6px]">
+                            <div class="x-flex x-gap-[18px]">
+                                {% for value in option.values %}
+                                    <label>
+                                        <input 
+                                            type="radio" 
+                                            name="variant-swatch" 
+                                            class="swatch-input__hidden" 
+                                            value="{{ value }}"
+                                            data-self="{{ value }}" 
+                                            {% if value == option.values.first %} 
+                                                checked 
+                                            {% endif %}
+                                        />
+                                        <div class="swatch-variant"
+                                            style="background-color: rgb(94, 94, 94); background-image: url({{ value.swatch.image.src | image_url: width: 400 }}); background-position: 50% 50%;">&nbsp;
+                                        </div>
+                                    </label>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="x-flex x-flex-col x-gap-[10px] x-pt-[12px]">
-                        <div class="x-text-[14px] x-tracking-[0.4px]">
-                            Kids
-                        </div>
-                        <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
-                            <label>
-                                <input type="radio" name="size" class="swatch-input__hidden" id="">
-                                <div class="text-variant">50/56 (0-2M)</div>
-                            </label>
-                            <label>
-                                <input type="radio" name="size" class="swatch-input__hidden" id="">
-                                <div class="text-variant">50/56 (0-2M)</div>
-                            </label>
-                            <label>
-                                <input type="radio" name="size" class="swatch-input__hidden" id="">
-                                <div class="text-variant">50/56 (0-2M)</div>
-                            </label>
-                            <label>
-                                <input type="radio" name="size" class="swatch-input__hidden" id="">
-                                <div class="text-variant">50/56 (0-2M)</div>
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="size-guide-btn x-text-[14px] x-underline x-tracking-[0.4px]">
-                            Size guide
-                        </button>
-                    </div>
-                </div>
+                    {% endif %}
+                {% endfor %}
 
                 <div>
                     Reviews (if available, else hide)
@@ -160,152 +131,90 @@
                             </button>
                         </div>
                     </div>
-                    <button class="x-border x-border-gray-300 x-py-[12px] x-flex-1 x-text-[14px]">
+                    <button class="x-bg-[#484f46] x-text-white x-py-[12px] x-flex-1 x-text-[14px]">
                         Add to Cart
                     </button>
                 </div>
 
                 <section>
-                    <div class="collapse product-details x-mt-[-1px]">
-                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                        <div class="x-border-t-[1px] x-border-b-[1px]">
-                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                <div class="x-text-[14px]">Lorem1</div>
-                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                    <div
-                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                        &nbsp;
+                    {% if product.description %}
+                        <div class="collapse product-details x-mt-[-1px]">
+                            <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                            <div class="x-border-t-[1px] x-border-b-[1px]">
+                                <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                    <div class="x-text-[14px]">Description</div>
+                                    <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                        <div
+                                            class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                            &nbsp;
+                                        </div>
+                                        <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                     </div>
-                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                 </div>
-                            </div>
-                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                style="height: 0px; margin: 0px 0px;">
-                                <div class="x-text-[12px]">
-                                    <div class="x-pb-[16px] x-px-[8px]">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, velit?
-                                        Distinctio cupiditate mollitia qui numquam ut maxime laboriosam maiores
-                                        voluptates, nihil laborum animi odit eaque voluptate reprehenderit corporis
-                                        commodi temporibus. Maxime quaerat beatae, vel sint, enim expedita magni neque
-                                        culpa delectus quis accusantium similique voluptatibus molestias temporibus sit
-                                        pariatur?
+                                <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                    style="height: 0px; margin: 0px 0px;">
+                                    <div class="x-text-[12px]">
+                                        <div class="x-pb-[16px] x-px-[8px]">
+                                            {{ product.description }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="collapse product-details x-mt-[-1px]">
-                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                        <div class="x-border-t-[1px] x-border-b-[1px]">
-                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                <div class="x-text-[14px]">Lorem2</div>
-                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                    <div
-                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                        &nbsp;
+                    {% endif %}
+
+                    {% if product.metafields.details.how_run %}
+                        <div class="collapse product-details x-mt-[-1px]">
+                            <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                            <div class="x-border-t-[1px] x-border-b-[1px]">
+                                <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                    <div class="x-text-[14px]">How This Product Runs</div>
+                                    <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                        <div
+                                            class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                            &nbsp;
+                                        </div>
+                                        <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                     </div>
-                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                 </div>
-                            </div>
-                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                style="height: 0px; margin: 0px 0px;">
-                                <div class="x-text-[12px]">
-                                    <div class="x-pb-[16px] x-px-[8px]">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, velit?
-                                        Distinctio cupiditate mollitia qui numquam ut maxime laboriosam maiores
-                                        voluptates, nihil laborum animi odit eaque voluptate reprehenderit corporis
-                                        commodi temporibus. Maxime quaerat beatae, vel sint, enim expedita magni neque
-                                        culpa delectus quis accusantium similique voluptatibus molestias temporibus sit
-                                        pariatur?
+                                <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                    style="height: 0px; margin: 0px 0px;">
+                                    <div class="x-text-[12px]">
+                                        <div class="x-pb-[16px] x-px-[8px]">
+                                            {{ product.metafields.details.how_run }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="collapse product-details x-mt-[-1px]">
-                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                        <div class="x-border-t-[1px] x-border-b-[1px]">
-                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                <div class="x-text-[14px]">Lorem3</div>
-                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                    <div
-                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                        &nbsp;
+                    {% endif %}
+
+                    {% if product.metafields.details.fabric %}
+                        <div class="collapse product-details x-mt-[-1px]">
+                            <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                            <div class="x-border-t-[1px] x-border-b-[1px]">
+                                <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                    <div class="x-text-[14px]">Fabric Details</div>
+                                    <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                        <div
+                                            class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                            &nbsp;
+                                        </div>
+                                        <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                     </div>
-                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                 </div>
-                            </div>
-                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                style="height: 0px; margin: 0px 0px;">
-                                <div class="x-text-[12px]">
-                                    <div class="x-pb-[16px] x-px-[8px]">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, velit?
-                                        Distinctio cupiditate mollitia qui numquam ut maxime laboriosam maiores
-                                        voluptates, nihil laborum animi odit eaque voluptate reprehenderit corporis
-                                        commodi temporibus. Maxime quaerat beatae, vel sint, enim expedita magni neque
-                                        culpa delectus quis accusantium similique voluptatibus molestias temporibus sit
-                                        pariatur?
+                                <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                    style="height: 0px; margin: 0px 0px;">
+                                    <div class="x-text-[12px]">
+                                        <div class="x-pb-[16px] x-px-[8px]">
+                                            {{ product.metafields.details.fabric }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="collapse product-details x-mt-[-1px]">
-                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                        <div class="x-border-t-[1px] x-border-b-[1px]">
-                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                <div class="x-text-[14px]">Lorem4</div>
-                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                    <div
-                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                        &nbsp;
-                                    </div>
-                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                style="height: 0px; margin: 0px 0px;">
-                                <div class="x-text-[12px]">
-                                    <div class="x-pb-[16px] x-px-[8px]">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, velit?
-                                        Distinctio cupiditate mollitia qui numquam ut maxime laboriosam maiores
-                                        voluptates, nihil laborum animi odit eaque voluptate reprehenderit corporis
-                                        commodi temporibus. Maxime quaerat beatae, vel sint, enim expedita magni neque
-                                        culpa delectus quis accusantium similique voluptatibus molestias temporibus sit
-                                        pariatur?
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="collapse product-details x-mt-[-1px]">
-                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                        <div class="x-border-t-[1px] x-border-b-[1px]">
-                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                <div class="x-text-[14px]">Lorem5</div>
-                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                    <div
-                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                        &nbsp;
-                                    </div>
-                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                style="height: 0px; margin: 0px 0px;">
-                                <div class="x-text-[12px]">
-                                    <div class="x-pb-[16px] x-px-[8px]">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, velit?
-                                        Distinctio cupiditate mollitia qui numquam ut maxime laboriosam maiores
-                                        voluptates, nihil laborum animi odit eaque voluptate reprehenderit corporis
-                                        commodi temporibus. Maxime quaerat beatae, vel sint, enim expedita magni neque
-                                        culpa delectus quis accusantium similique voluptatibus molestias temporibus sit
-                                        pariatur?
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endif %}
+
                 </section>
 
             </div>
@@ -375,12 +284,14 @@
             width: 20px;
             height: 20px;
             border-radius: 100%;
-            outline: white 4px solid;
-            transition: box-shadow 0.2s;
+            outline: white 0px solid;
+            box-shadow: 0 0 0 0.5px gray;
+            transition: box-shadow 0.2s, outline 0.12s;
             cursor: pointer;
         }
 
         input:checked+.swatch-variant {
+            outline: white 4px solid;
             box-shadow: 0 0 0 6px gray;
         }
 
@@ -549,13 +460,9 @@
             let swatches = $('[name="variant-swatch"]');
 
             swatches.on('change', function () {
-                let shopAll = $('.group-sub');
-                let group = $(this).data('group');
                 let value = $(this).data('self');
-                let sub = $(`.swatch-group.${group} .sub`);
-                $('.swatch-group .sub').text('');
+                let sub = $('.sub');
                 sub.text(value);
-                shopAll.text(value);
             });
         }
 
@@ -610,6 +517,8 @@
                     fullscreen: true,
                     prevNextButtons: false
                 });
+
+                $(".shopify-section-group-header-group").css("z-index", isFullscreen ? "0" : "4");
             });
 
             $carousel.on('change.flickity', function (event, index) {
@@ -704,7 +613,7 @@
                             In order to make it easier for you, some Milk-Denmark items have sizes marked with a country code. These are only suggestions.
                         </div>
                     </div>
-                    <div class="x-pt-[32px]">
+                    <div class="x-py-[32px]">
                         <div class="x-font-semibold">General size guide</div>
                         <div class="x-py-[16px]">
                             We have a general size guide where all available product sizes are listed. Please check it out to see if the size you are looking for is available.
