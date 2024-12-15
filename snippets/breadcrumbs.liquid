@@ -2,7 +2,7 @@
 
 <nav class="breadcrumbs" aria-label="breadcrumbs">
         <span>
-            <a href="/" title="Home">Home</a> / 
+            <a href="/" title="Home">Home</a>&nbsp;&nbsp;|&nbsp; 
         </span>
 
         {% case t %}
@@ -17,7 +17,7 @@
             
             {% if product.collections.first %}
                 <span>
-                    <a href="{{ product.collections.first.url }}" aria-current="page">{{ product.collections.first.title }}</a> / 
+                    <a href="{{ product.collections.first.url }}" aria-current="page">{{ product.collections.first.title }}</a>&nbsp;&nbsp;|&nbsp;
                 </span>
             {% endif %}
 
