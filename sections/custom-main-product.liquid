@@ -1,543 +1,836 @@
-
 {{ 'tingle.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'tingle.js' | asset_url }}"></script>
 
+{% assign selected_variant = product.selected_or_first_available_variant %}
 
-<section class="x-max-w-[1280px] x-mx-auto">
-        <div class="x-text-center md:x-text-start x-py-[20px] x-text-[12px]">
+<section class="x-bg-[#fbf9f7]">
+    <div class="x-max-w-[1280px] x-mx-auto">
+        <div class="x-text-center md:x-text-start x-py-[20px] x-text-[12px] md:x-px-[18px] md:x-pb-[0px]">
             {% include 'breadcrumbs' %}
         </div>
-        <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px]">
+        <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px] md:x-p-[18px]">
 
             <div class="x-w-full x-relative">
-                <div class="x-flex x-flex-col x-gap-[10px] x-sticky x-top-[18px] x-pb-[18px]">
-                    <div class="carousel-product">
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
+                <div id="carousel-container-{{ section.id }}"
+                    class="x-flex x-flex-col x-gap-[10px] x-sticky x-top-[18px]">
+                    <div class="carousel-product x-shadow-none">
+                        <div class="carousel-cell x-border x-rounded-[8px]"
+                            style="background-image: url({{ selected_variant.featured_image | image_url: width: 1000 }}); background-size:contain">
                             <button class="carousel-f-button">
                                 +
                             </button>
                         </div>
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
+                        {% for image_media in selected_variant.metafields.custom.other_media.value %}
+                        <div class="carousel-cell x-border x-rounded-[8px]"
+                            style="background-image: url({{ image_media }}); background-size:contain">
                             <button class="carousel-f-button">
                                 +
                             </button>
                         </div>
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
-                            <button class="carousel-f-button">
-                                +
-                            </button>
-                        </div>
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
-                            <button class="carousel-f-button">
-                                +
-                            </button>
-                        </div>
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">
-                            <button class="carousel-f-button">
-                                +
-                            </button>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="carousel-nav md:x-block x-hidden">
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
-                        <div class="carousel-cell" style="background-image: url({{ "400.svg" | asset_url }}); background-size:contain">&nbsp;</div>
+                    {% if selected_variant.metafields.custom.other_media %}
+                    <div class="carousel-nav md:x-block x-hidden x-shadow-none">
+                        <div class="carousel-cell x-border x-rounded-[4px]"
+                            style="background-image: url({{ selected_variant.featured_image | image_url: width: 1000 }}); background-size:contain">
+                            &nbsp;</div>
+                        {% for image_media in selected_variant.metafields.custom.other_media.value %}
+                        <div class="carousel-cell x-border x-rounded-[4px]"
+                            style="background-image: url({{ image_media }}); background-size:contain">&nbsp;</div>
+                        {% endfor %}
                     </div>
+                    {% endif %}
                 </div>
             </div>
 
-            <div class="x-flex x-flex-col x-gap-[16px] md:x-gap-[32px] x-w-full x-p-[18px] x-pt-[25px] md:x-pt-[0px]">
+            <div
+                class="product--information x-flex x-flex-col x-gap-[16px] md:x-gap-[32px] x-w-full x-p-[18px] x-pt-[25px] md:x-p-[0px]">
                 <div class="x-flex x-flex-col x-gap-[10px]">
                     <div class="x-text-[18px] md:x-text-[20px] x-tracking-[0.6px]">{{ product.title }}</div>
                     <div class="x-flex md:x-flex-col x-justify-between">
-                        <div class="x-text-[14px] md:x-text-[16px] x-tracking-[0.6px]"><span class="sub">{{ product.options_with_values.first.values.first }}</span>
+                        <div class="x-text-[14px] md:x-text-[16px] x-tracking-[0.6px]"><span class="sub">{{
+                                product.selected_or_first_available_variant.option1 }}</span>
                         </div>
-                        <div class="x-text-[14px] md:x-text-[16px] md:x-pt-[32px] x-tracking-[0.6px]">15.00 USD</div>
+                        <div id="price-{{ section.id }}"
+                            class="product-price x-text-[14px] md:x-text-[16px] md:x-pt-[16px] x-tracking-[0.6px]">{{
+                            selected_variant.price | money }}</div>
                     </div>
                 </div>
 
-                {% for option in product.options_with_values %}
+
+                <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
+                    {% unless product.has_only_default_variant %}
+                    {% for option in product.options_with_values %}
                     {% if option.name != "Color" %}
-                        <div class="x-flex x-flex-col x-gap-[12px]">
-                            <div class="x-flex x-flex-col x-gap-[10px]">
-                                <div class="x-text-[14px] x-tracking-[0.4px]">
-                                    {{ option.name }}
-                                </div>
-                                <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
-                                    {% for value in option.values %}
-                                        <label>
-                                    <input type="radio" name="size" class="swatch-input__hidden" value="{{ value }}" id="" {% if value == option.values.first %} checked {% endif %}/>
-                                            <div class="text-variant">{{ value }}</div>
-                                        </label>
-                                    {% endfor %}
-                                </div>
+                    <div class="x-flex x-flex-col x-gap-[12px]">
+                        <div class="x-flex x-flex-col x-gap-[10px]">
+                            <div class="x-text-[14px] x-tracking-[0.4px]">
+                                {{ option.name }}
                             </div>
-                            <div>
-                                <button class="size-guide-btn x-text-[14px] x-underline x-tracking-[0.4px]">
-                                    Size guide
-                                </button>
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="x-py-[20px] x-pl-[6px]">
-                            <div class="x-flex x-gap-[18px]">
+                            <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
                                 {% for value in option.values %}
-                                    <label>
-                                        <input 
-                                            type="radio" 
-                                            name="variant-swatch" 
-                                            class="swatch-input__hidden" 
-                                            value="{{ value }}"
-                                            data-self="{{ value }}" 
-                                            {% if value == option.values.first %} 
-                                                checked 
-                                            {% endif %}
-                                        />
-                                        <div class="swatch-variant"
-                                            style="background-color: rgb(94, 94, 94); background-image: url({{ value.swatch.image.src | image_url: width: 400 }}); background-position: 50% 50%;">&nbsp;
-                                        </div>
-                                    </label>
+                                <label>
+                                    <input type="radio" name="size" class="swatch-input__hidden" value="{{ value }}"
+                                        id="" {% if value==option.selected_value %} checked {% endif %} />
+                                    <div class="text-variant">{{ value }}</div>
+                                </label>
                                 {% endfor %}
                             </div>
                         </div>
-                    {% endif %}
-                {% endfor %}
-
-                <div>
-                    Reviews (if available, else hide)
-                </div>
-
-                <div>
-                    FREQUENTLY BOUGHT TOGETHER (CO-DEVELOPER TASK)
-                </div>
-
-                <div class="x-flex x-gap-[10px]">
-                    <div class="x-inline-block">
-                        <div
-                            class="quantity-picker x-flex x-border-[1px] x-border-gray-300 x-gap-[12px] x-items-center x-justify-between">
-                            <button
-                                class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
-                                id="decrease">
-                                <i class="bx bx-minus"></i>
-                            </button>
-                            <input type="text" disabled="true" id="quantity" value="1" readonly
-                                class="x-text-center x-w-[30px] x-bg-transparent x-border-none x-outline-none">
-                            <button
-                                class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
-                                id="increase">
-                                <i class="bx bx-plus"></i>
+                        <div>
+                            <button type="button" class="size-guide-btn x-text-[14px] x-underline x-tracking-[0.4px]">
+                                Size guide
                             </button>
                         </div>
                     </div>
-                    <button class="x-bg-[#484f46] x-text-white x-py-[12px] x-flex-1 x-text-[14px]">
-                        Add to Cart
-                    </button>
+                    {% else %}
+                    <div class="x-pb-[32px] x-pl-[6px]">
+                        <div class="x-flex x-gap-[18px]">
+                            {% for value in option.values %}
+                            <label>
+                                <input type="radio" name="variant-swatch" class="swatch-input__hidden"
+                                    value="{{ value }}" data-self="{{ value }}" {% if value==option.selected_value %}
+                                    checked {% endif %} />
+                                <div class="swatch-variant"
+                                    style="background-color: rgb(94, 94, 94); background-image: url({{ value.swatch.image.src | image_url: width: 400 }}); background-position: 50% 50%;">
+                                    &nbsp;
+                                </div>
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endunless %}
+
+                    <script class="product-variants" type="application/json">
+                                {{ product.variants | json }}
+                    </script>
+
+                    <div class="x-flex x-gap-[10px] x-pt-[32px]">
+                        <div class="x-inline-block">
+                            <div
+                                class="quantity-picker x-flex x-border-[1px] x-border-gray-300 x-gap-[12px] x-items-center x-justify-between">
+                                <button type="button"
+                                    class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                                    id="decrease">
+                                    <i class="bx bx-minus"></i>
+                                </button>
+                                <input type="text" name="quantity" id="quantity" value="1" readonly
+                                    class="x-text-center x-w-[30px] x-bg-transparent x-border-none x-outline-none " />
+                                <button type="button"
+                                    class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                                    id="increase">
+                                    <i class="bx bx-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" name="add"
+                            class="x-bg-[#484f46] x-text-white x-py-[12px] x-flex-1 x-text-[14px] {% if selected_variant.available == false %} x-opacity-35 {% endif %} x-transition-opacity x-duration-300"
+                            {% if selected_variant.available==false %} disabled {% endif %}>
+                            {% if selected_variant.available == false %}
+                            Sold Out
+                            {% else %}
+                            Add to Cart
+                            {% endif %}
+                        </button>
+                    </div>
+
+                </variant-selector>
+
+                {% comment %} <div>
+                    Reviews (if available, else hide)
+                </div> {% endcomment %}
+
+                {% assign c_product = product.selected_or_first_available_variant.metafields.product.frequently_list.value %}
+                
+                <div id="carousel-freq-container-{{ section.id }}">
+                    <div class="{% if c_product %} x-pb-[24px] {% endif %}">
+                        {% if c_product %}
+                            <div class="carousel-freq">
+                                {% for t in c_product %}
+                                    <div class="carousel-cell x-border x-rounded-[8px] x-pb-[4px]">
+                                        <input class="freq-checkbox x-absolute x-left-[8px] x-top-[8px] x-w-[16px] x-h-[16px]" type="checkbox" value="{{ t.id }}">
+                                        <div class="freq cell-content x-flex x-flex-col" data-featured="{{ t.featured_image | image_url: width: 400 }}" data-media='{{ t.metafields.custom.other_media.value | join: ", " }}' data-description='{{ t.product.description | escape }}' data-title="{{ t.product.title }}" data-variant="{{ t.title }}" data-price="{{ t.price | money }}">
+                                            <div class="x-aspect-square x-w-full" style="background-image: url({{ t.featured_image | image_url: width: 400 }}); background-size: contain">
+                                                &nbsp;
+                                            </div>
+                                            <div class="x-text-center x-flex x-flex-col x-gap-[4px]">
+                                                <div>
+                                                    <div class="x-text-[14px] x-font-bold">
+                                                        {{ t.product.title }}
+                                                    </div>
+                                                    <div class="x-text-[12px] x-font-semibold">
+                                                        {{ t.title }}
+                                                    </div>
+                                                </div>
+                                                <div class="x-text-[14px]">
+                                                    {{ t.price | money }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
 
-                <section>
+                <style>
+                    .carousel-freq .carousel-cell {
+                        width: 48%;
+                        aspect-ratio: 10/12;
+                        margin-right: 10px;
+                    }
+                </style>
+
+                <section class="collapsable-section">
                     {% if product.description %}
-                        <div class="collapse product-details x-mt-[-1px]">
-                            <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                            <div class="x-border-t-[1px] x-border-b-[1px]">
-                                <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                    <div class="x-text-[14px]">Description</div>
-                                    <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                        <div
-                                            class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                            &nbsp;
-                                        </div>
-                                        <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
+                    <div class="collapse product-details x-mt-[-1px]">
+                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                        <div class="x-border-t-[1px] x-border-b-[1px]">
+                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
+                                        class='bx bx-book-open x-text-[16px]'></i>Description</div>
+                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                    <div
+                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                        &nbsp;
                                     </div>
+                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                 </div>
-                                <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                    style="height: 0px; margin: 0px 0px;">
-                                    <div class="x-text-[12px]">
-                                        <div class="x-pb-[16px] x-px-[8px]">
-                                            {{ product.description }}
-                                        </div>
+                            </div>
+                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                style="height: 0px; margin: 0px 0px;">
+                                <div class="x-text-[12px]">
+                                    <div class="x-pb-[16px] x-px-[8px]">
+                                        {{ product.description }}
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     {% endif %}
 
                     {% if product.metafields.details.how_run %}
-                        <div class="collapse product-details x-mt-[-1px]">
-                            <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                            <div class="x-border-t-[1px] x-border-b-[1px]">
-                                <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                    <div class="x-text-[14px]">How This Product Runs</div>
-                                    <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                        <div
-                                            class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                            &nbsp;
-                                        </div>
-                                        <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
+                    <div class="collapse product-details x-mt-[-1px]">
+                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                        <div class="x-border-t-[1px] x-border-b-[1px]">
+                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
+                                        class='bx bx-check-circle x-text-[16px]'></i>How This Product Runs</div>
+                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                    <div
+                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                        &nbsp;
                                     </div>
+                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                 </div>
-                                <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                    style="height: 0px; margin: 0px 0px;">
-                                    <div class="x-text-[12px]">
-                                        <div class="x-pb-[16px] x-px-[8px]">
-                                            {{ product.metafields.details.how_run }}
-                                        </div>
+                            </div>
+                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                style="height: 0px; margin: 0px 0px;">
+                                <div class="x-text-[12px]">
+                                    <div class="x-pb-[16px] x-px-[8px]">
+                                        {{ product.metafields.details.how_run }}
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     {% endif %}
 
                     {% if product.metafields.details.fabric %}
-                        <div class="collapse product-details x-mt-[-1px]">
-                            <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                            <div class="x-border-t-[1px] x-border-b-[1px]">
-                                <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                    <div class="x-text-[14px]">Fabric Details</div>
-                                    <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                        <div
-                                            class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                            &nbsp;
-                                        </div>
-                                        <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
+                    <div class="collapse product-details x-mt-[-1px]">
+                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                        <div class="x-border-t-[1px] x-border-b-[1px]">
+                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
+                                        class='bx bx-grid x-text-[16px]'></i>Fabric Details</div>
+                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                    <div
+                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                        &nbsp;
                                     </div>
+                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
                                 </div>
-                                <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                    style="height: 0px; margin: 0px 0px;">
-                                    <div class="x-text-[12px]">
-                                        <div class="x-pb-[16px] x-px-[8px]">
-                                            {{ product.metafields.details.fabric }}
-                                        </div>
+                            </div>
+                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                style="height: 0px; margin: 0px 0px;">
+                                <div class="x-text-[12px]">
+                                    <div class="x-pb-[16px] x-px-[8px]">
+                                        {{ product.metafields.details.fabric }}
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     {% endif %}
-
                 </section>
-
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <style>
-        .carousel-product {
-            background: #FAFAFA;
+<style>
+    .carousel-product {
+        background: #FAFAFA;
+    }
+
+    .carousel-product .flickity-page-dots {
+        display: flex;
+        flex-direction: row;
+        bottom: -4px;
+    }
+
+    .carousel-product .flickity-page-dots .dot {
+        height: 4px;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .carousel-product .carousel-cell {
+        width: 100%;
+        aspect-ratio: 1/1;
+    }
+
+    .carousel-product:not(.is-fullscreen) .carousel-f-button {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #333;
+        color: white;
+    }
+
+    .carousel-product.is-fullscreen .carousel-f-button {
+        display: none;
+    }
+
+    .carousel-product.is-fullscreen .flickity-viewport {
+        height: 100% !important;
+    }
+
+    .carousel-product.is-fullscreen .flickity-slider {
+        display: flex;
+        align-items: center;
+    }
+
+    .carousel-product .flickity-fullscreen-button-view {
+        display: none;
+    }
+
+    .carousel-product.is-fullscreen .carousel-cell {
+        width: 100%;
+    }
+
+    .swatch-input__hidden {
+        display: none;
+    }
+
+    .swatch-variant {
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        outline: white 0px solid;
+        box-shadow: 0 0 0 0.5px gray;
+        transition: box-shadow 0.2s, outline 0.12s;
+        cursor: pointer;
+    }
+
+    input:checked+.swatch-variant {
+        outline: white 4px solid;
+        box-shadow: 0 0 0 6px gray;
+    }
+
+    .carousel-product:not(.is-fullscreen) .flickity-button.previous,
+    .carousel-product:not(.is-fullscreen) .flickity-button.next {
+        display: none;
+    }
+
+    .carousel-nav .carousel-cell {
+        margin-right: 10px;
+        width: 20%;
+        aspect-ratio: 1/1;
+    }
+
+    .carousel-nav .flickity-button,
+    .carousel-nav .flickity-page-dots {
+        display: none;
+    }
+
+    .carousel-cell.is-nav-selected {
+        border: 2px solid gray;
+    }
+
+    .text-variant {
+        padding: 12px;
+        border: 0.75px solid #484f46;
+        color: #484f46;
+        font-size: 12px;
+        text-align: center;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+
+    input:checked+.text-variant {
+        background-color: #484f46;
+        color: white;
+    }
+
+    .size-guide-modal .tingle-modal-box__content {
+        padding: 0;
+    }
+
+    .size-guide-modal .tingle-modal-box__footer {
+        padding: 0 18px 32px;
+        background-color: white;
+    }
+
+    .size-guide-modal .tingle-modal__close {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        color: black;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .size-guide-modal .tingle-modal__closeLabel {
+        font-size: 22px;
+    }
+
+
+    .size-guide-modal .tingle-modal__closeIcon {
+        width: 12px;
+        position: absolute;
+        left: 18px;
+        margin: 0;
+    }
+
+    .size-table th,
+    .size-table td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .size-table .lbdr {
+        border-left: 1px solid #ddd;
+    }
+
+    @media (min-width: 540px) {
+        .tingle-modal__close {
+            border-radius: 4px;
+        }
+
+        .tingle-modal__closeIcon {
+            position: static !important;
+        }
+    }
+
+    @media (min-width: 990px) {
+        .carousel-product .carousel-cell {
+            width: 100%;
         }
 
         .carousel-product .flickity-page-dots {
-            display: flex;
-            flex-direction: row;
-            bottom: -4px;
-        }
-
-        .carousel-product .flickity-page-dots .dot {
-            height: 4px;
-            width: 100%;
-            margin: 0;
-            border-radius: 0;
-        }
-
-        .carousel-product .carousel-cell {
-            width: 100%;
-            aspect-ratio: 1/1;
-        }
-
-        .carousel-product:not(.is-fullscreen) .carousel-f-button {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #333;
-            color: white;
-        }
-
-        .carousel-product.is-fullscreen .carousel-f-button {
-            display: none;
-        }
-
-        .carousel-product.is-fullscreen .flickity-viewport {
-            height: 100% !important;
-        }
-
-        .carousel-product.is-fullscreen .flickity-slider {
-            display: flex;
-            align-items: center;
-        }
-
-        .carousel-product .flickity-fullscreen-button-view {
             display: none;
         }
 
         .carousel-product.is-fullscreen .carousel-cell {
-            width: 100%;
+            width: 60%;
+            margin-right: 20px;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .carousel-product.is-fullscreen .carousel-cell {
+            width: 60%;
+            margin-right: 20px;
         }
 
-        .swatch-input__hidden {
-            display: none;
+        .freq-modal .tingle-modal-box {
+            width: 33%;
         }
 
-        .swatch-variant {
-            width: 20px;
-            height: 20px;
-            border-radius: 100%;
-            outline: white 0px solid;
-            box-shadow: 0 0 0 0.5px gray;
-            transition: box-shadow 0.2s, outline 0.12s;
-            cursor: pointer;
-        }
-
-        input:checked+.swatch-variant {
-            outline: white 4px solid;
-            box-shadow: 0 0 0 6px gray;
-        }
-
-        .carousel-product:not(.is-fullscreen) .flickity-button.previous,
-        .carousel-product:not(.is-fullscreen) .flickity-button.next {
-            display: none;
-        }
-
-        .carousel-nav .carousel-cell {
+        .carousel-freq .carousel-cell {
+            width: 30%;
+            aspect-ratio: 10/12;
             margin-right: 10px;
-            width: 20%;
-            aspect-ratio: 1/1;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .carousel-product.is-fullscreen .carousel-cell {
+            width: 40%;
+            margin-right: 20px;
+        }
+    }
+</style>
+
+<script>
+    class VariantSelector extends HTMLElement {
+        constructor() {
+            super();
+            this.onVariantChange = this.onVariantChange.bind(this);
         }
 
-        .carousel-nav .flickity-button,
-        .carousel-nav .flickity-page-dots {
-            display: none;
-        }
+        connectedCallback() {
+            this.addEventListener('change', this.onVariantChange);
 
-        .carousel-cell.is-nav-selected {
-            border: 2px solid gray;
-        }
-
-        .text-variant {
-            padding: 12px;
-            border: 0.75px solid #484f46;
-            color: #484f46;
-            font-size: 12px;
-            text-align: center;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-        }
-
-        input:checked+.text-variant {
-            background-color: #484f46;
-            color: white;
-        }
-
-        .size-guide-modal .tingle-modal-box__content {
-            padding: 0;
-        }
-
-        .size-guide-modal .tingle-modal-box__footer {
-            padding: 0 18px 32px;
-            background-color: white;
-        }
-
-        .size-guide-modal .tingle-modal__close {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            color: black;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .size-guide-modal .tingle-modal__closeLabel {
-            font-size: 22px;
-        }
-
-        
-        .size-guide-modal .tingle-modal__closeIcon {
-            width: 12px;
-            position: absolute;
-            left: 18px;
-            margin: 0;
-        }
-
-        .size-table th, .size-table td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .size-table .lbdr {
-            border-left: 1px solid #ddd;
-        }
-
-        @media (min-width: 540px) {
-            .tingle-modal__close {
-                border-radius: 4px;
-            }
-
-            .tingle-modal__closeIcon {
-                position: static !important;
+            const button = this.querySelector('button[name="add"]');
+            if (button) {
+                button.addEventListener('click', this.addToCart.bind(this));
+            } else {
+                console.error('Add to cart button not found');
             }
         }
 
-        @media (min-width: 990px) {
-            .carousel-product .carousel-cell {
-                width: 100%;
-            }
+        disconnectedCallback() {
+            this.removeEventListener('change', this.onVariantChange);
 
-            .carousel-product .flickity-page-dots {
-                display: none;
-            }
-
-            .carousel-product.is-fullscreen .carousel-cell {
-                width: 60%;
-                margin-right: 20px;
+            const button = this.querySelector('button[name="add"]');
+            if (button) {
+                button.removeEventListener('click', this.addToCart.bind(this));
             }
         }
 
-        @media (min-width: 1280px) {
-            .carousel-product.is-fullscreen .carousel-cell {
-                width: 60%;
-                margin-right: 20px;
+        addToCart() {
+            this.getSelectedOptions();
+            this.getSelectedVariant();
+            
+            const formData = {
+                'items': [
+                    {
+                        'id': this.currentVariant.id,
+                        'quantity': parseInt(document.getElementById('quantity').value)
+                    },
+                ]
             }
-        }
 
-        @media (min-width: 1440px) {
-            .carousel-product.is-fullscreen .carousel-cell {
-                width: 40%;
-                margin-right: 20px;
-            }
-        }
-    </style>
+            let checkBoxes = $('input.freq-checkbox')
 
-    <script>
-        $(window).on('load', function () {
-            setCarouselProduct();
-            setCarouselNav();
-            setSwatchSub();
-            setSizeGuide();
-            setQuantity();
-            sizeGuideModal();
-            applyCollapse('.collapse.product-details');
-        });
-
-        function applyCollapse(groupClass) {
-            $(groupClass).on('click', function () {
-                function toggleCollapse(element, shouldOpen) {
-                    const checkbox = element.find('input[type="checkbox"]');
-                    const content = element.find('.collapse-content');
-                    const sign = element.find('.collapse-sign').children().first();
-
-                    checkbox.prop('checked', shouldOpen);
-                    sign.css('transform', shouldOpen ? 'rotate(90deg)' : 'rotate(0deg)');
-                    content.css({
-                        height: shouldOpen ? content.prop('scrollHeight') + 'px' : '0px'
+            checkBoxes.each(function () {
+                if ($(this).is(':checked')) {
+                    formData.items.push({
+                        'id': $(this).val(),
+                        'quantity': 1
                     });
                 }
+            });
 
-                $(groupClass).each(function () {
-                    if (this !== event.currentTarget) {
-                        toggleCollapse($(this), false);
-                    }
-                });
-
-                const isChecked = $(this).find('input[type="checkbox"]').prop('checked');
-                toggleCollapse($(this), !isChecked);
+            $.ajax({
+                url: window.Shopify.routes.root + 'cart/add.js',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function(data) {
+                    // Handle success
+                    checkBoxes.prop('checked', false);
+                    console.log(data);
+                    window.location.href = '/cart';
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    console.error('Error:', error);
+                }
             });
         }
 
-        function setCarouselNav() {
-            $('.carousel-nav').flickity({
-                asNavFor: '.carousel-product',
-                contain: true,
-                pageDots: false,
+        onVariantChange() {
+            this.getSelectedOptions();
+            this.getSelectedVariant();
+
+            if (this.currentVariant) {
+                this.updateURL();
+                this.updatePrice();
+                this.updateCartButton();
+                this.updateCarousel();
+            }
+        }
+
+        getSelectedOptions() {
+            this.options = Array.from(this.querySelectorAll('input:checked')).map(input => input.value);
+        }
+
+        getVariantJSON() {
+            this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+            return this.variantData;
+        }
+
+        getSelectedVariant() {
+            this.currentVariant = this.getVariantJSON().find(variant => {
+                return this.options.every(option => variant.options.includes(option));
+            });
+
+            console.log(this.currentVariant);
+        }
+
+        updateURL() {
+            if (!this.currentVariant) return;
+            window.history.pushState({}, '', `?variant=${this.currentVariant.id}`);
+        }
+
+        updatePrice() {
+            fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
+                .then((response) => response.text())
+                .then((responseText) => {
+                    const id = `price-${this.dataset.section}`;
+                    const html = new DOMParser().parseFromString(responseText, 'text/html');
+
+                    const oldPrice = document.getElementById(id);
+                    const newPrice = html.getElementById(id);
+
+                    if (oldPrice && newPrice) {
+                        oldPrice.innerHTML = newPrice.innerHTML;
+                    }
+                })
+        }
+
+        updateCartButton() {
+            const button = document.querySelector('button[name="add"]');
+            button.disabled = !this.currentVariant.available;
+            button.textContent = this.currentVariant.available ? 'Add to Cart' : 'Sold Out';
+            button.classList.toggle('x-opacity-35', !this.currentVariant.available);
+        }
+
+        updateCarousel() {
+            fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
+                .then((response) => response.text())
+                .then((responseText) => {
+                    const id = `carousel-container-${this.dataset.section}`;
+                    const freqId = `carousel-freq-container-${this.dataset.section}`;
+                    const html = new DOMParser().parseFromString(responseText, 'text/html');
+
+                    const oldCarousel = document.getElementById(id);
+                    const newCarousel = html.getElementById(id);
+
+                    const oldFreq = document.getElementById(freqId);
+                    const newFreq = html.getElementById(freqId);
+
+                    if (oldCarousel && newCarousel) {
+                        oldCarousel.innerHTML = newCarousel.innerHTML;
+                    }
+
+                    if (oldFreq && newFreq) {
+                        oldFreq.innerHTML = newFreq.innerHTML;
+                    }
+
+                    setCarouselProduct();
+                    setCarouselNav();
+                    setCarouselFreq();
+                    freqModals();
+                })
+        }
+    }
+    customElements.define('variant-selector', VariantSelector);
+
+    $(window).on('load', function () {
+        setCarouselProduct();
+        setCarouselNav();
+        setCarouselFreq();
+
+        sizeGuideModal();
+        freqModals();
+
+        setSwatchSub();
+        setSizeGuide();
+        setQuantity();
+        applyCollapse('.collapse.product-details');
+    });
+
+    function freqModals() {
+        let model = new tingle.modal({
+            footer: true,
+            stickyFooter: false,
+            closeMethods: ['overlay', 'button', 'escape'],
+            closeLabel: "Close",
+            onClose: function() {
+                let $carousel = $(".modal-img-carousel").flickity({});
+                $carousel.flickity('destroy');
+            },
+            cssClass: ['freq-modal'],
+        });
+
+        $('.freq.cell-content').on('click', function () {
+            let featured = $(this).data('featured');
+            let media = $(this).data('media').split(', ').filter(str => str !== '');
+            let description = $(this).data('description');
+            let title = $(this).data('title');
+            let variant = $(this).data('variant');
+            let price = $(this).data('price');
+
+            model.setContent(`
+                <div class="x-flex x-flex-col x-gap-[48px]">
+                    <div class="x-relative modal-img-carousel x-w-full x-mx-auto x-aspect-square">
+                        <div class="img-carousel-cell x-w-full x-aspect-square" style="background-image: url(${featured}); background-size: contain">&nbsp;</div>
+                    </div>
+                    <div class="x-flex x-flex-col x-gap-[8px] x-justify-center x-items-center">
+                        <div class="x-text-[18px] x-font-semibold">${title}</div>
+                        <div class="x-text-[14px] x-font-semibold x-mt-[-8px]">${variant}</div>
+                        <div class="x-text-[18px]">${price}</div>
+                    </div>
+                    ${description}
+                </div>
+            `);
+
+            if (media.length > 0) {
+                console.log(media);
+                $(".modal-img-carousel").append(media.map((img) => {
+                    return `<div class="img-carousel-cell x-w-full x-aspect-square" style="background-image: url(${img}); background-size: contain">&nbsp;</div>`;
+                }));
+                
+                setTimeout(() => {
+                    $(".modal-img-carousel").flickity({
+                        contain: true,
+                        groupCells: 1,
+                        fade: true,
+                    });
+                }, 100);
+
+                $(".modal-img-carousel .flickity-prev-next-button").css("z-index", "999");
+            }
+
+            model.open();
+        });
+    }
+
+    function setCarouselFreq() {
+        $('.carousel-freq').flickity({
+            contain: true,
+            groupCells: 2,
+            draggable: false
+        });
+    }
+
+    function applyCollapse(groupClass) {
+        $(groupClass).on('click', function () {
+            function toggleCollapse(element, shouldOpen) {
+                const checkbox = element.find('input[type="checkbox"]');
+                const content = element.find('.collapse-content');
+                const sign = element.find('.collapse-sign').children().first();
+
+                checkbox.prop('checked', shouldOpen);
+                sign.css('transform', shouldOpen ? 'rotate(90deg)' : 'rotate(0deg)');
+                content.css({
+                    height: shouldOpen ? content.prop('scrollHeight') + 'px' : '0px'
+                });
+            }
+
+            $(groupClass).each(function () {
+                if (this !== event.currentTarget) {
+                    toggleCollapse($(this), false);
+                }
+            });
+
+            const isChecked = $(this).find('input[type="checkbox"]').prop('checked');
+            toggleCollapse($(this), !isChecked);
+        });
+    }
+
+    function setCarouselNav() {
+        $('.carousel-nav').flickity({
+            asNavFor: '.carousel-product',
+            cellAlign: 'left',
+            contain: true,
+            pageDots: false,
+            prevNextButtons: false
+        });
+    }
+
+    function setSwatchSub() {
+        let swatches = $('[name="variant-swatch"]');
+
+        swatches.on('change', function () {
+            let value = $(this).data('self');
+            let sub = $('.sub');
+            sub.text(value);
+        });
+    }
+
+    function setSizeGuide() {
+        let sizes = $('[name="variant-size"]');
+
+        sizes.on('change', function () {
+            let value = $(this).data('self');
+            let sub = $('.size-group .sub');
+            sub.text(value);
+        });
+    }
+
+    function setQuantity() {
+        $('#increase').click(function () {
+            let quantity = parseInt($('#quantity').val());
+            $('#quantity').attr('value', quantity + 1);
+            $('#decrease').find('i').removeAttr('disabled');
+        });
+
+        $('#decrease').click(function () {
+            let quantity = parseInt($('#quantity').val());
+            if (quantity > 1) {
+                $('#quantity').attr('value', quantity - 1);
+            }
+
+            if (quantity == 2) {
+                $('#decrease').find('i').attr('disabled', true);
+            }
+        });
+
+        $('#quantity').on('input', function () {
+            console.log('input');
+        });
+    }
+
+    function setCarouselProduct() {
+        let $carousel = $('.carousel-product').flickity({
+            // options
+            contain: true,
+            fullscreen: true
+        });
+
+        // on click of the carousel-f-button, add class 'is-fullscreen' to the .carousel
+        $('.carousel-f-button').on('click', function () {
+            // get the index of the clicked carousel-cell
+            $carousel.flickity('viewFullscreen');
+            let index = $(this).closest('.carousel-cell').index();
+            $carousel.flickity('select', index);
+        });
+
+        $carousel.on('fullscreenChange.flickity', function (event, isFullscreen) {
+            // contain: false when in fullscreen
+            $('.carousel-product').flickity({
+                contain: !isFullscreen,
+                fullscreen: true,
                 prevNextButtons: false
             });
-        }
 
-        function setSwatchSub() {
-            let swatches = $('[name="variant-swatch"]');
+            $(".shopify-section-group-header-group").css("z-index", isFullscreen ? "-1" : "4");
+            $(".shopify-section-group-footer-group").css("z-index", isFullscreen ? "-1" : "0");
+            $(".collapsable-section").css("z-index", isFullscreen ? "-1" : "0");
+            $(".carousel-freq").css("z-index", isFullscreen ? "-1" : "0");
+        });
 
-            swatches.on('change', function () {
-                let value = $(this).data('self');
-                let sub = $('.sub');
-                sub.text(value);
-            });
-        }
+        $carousel.on('change.flickity', function (event, index) {
+            $('.carousel-nav').flickity('select', index);
+            $('.carousel-nav').find('.carousel-cell').removeClass('is-nav-selected');
+            $('.carousel-nav').find('.carousel-cell').eq(index).addClass('is-nav-selected');
+        });
+    }
 
-        function setSizeGuide() {
-            let sizes = $('[name="variant-size"]');
+    function sizeGuideModal() {
+        var modal = new tingle.modal({
+            footer: true,
+            stickyFooter: false,
+            closeMethods: ['overlay', 'button', 'escape'],
+            closeLabel: "Size guide",
+            cssClass: ['size-guide-modal'],
+        });
 
-            sizes.on('change', function () {
-                let value = $(this).data('self');
-                let sub = $('.size-group .sub');
-                sub.text(value);
-            });
-        }
-
-        function setQuantity() {
-            $('#increase').click(function () {
-                let quantity = parseInt($('#quantity').val());
-                $('#quantity').val(quantity + 1);
-                $('#decrease').find('i').removeAttr('disabled');
-            });
-
-            $('#decrease').click(function () {
-                let quantity = parseInt($('#quantity').val());
-                if (quantity > 1) {
-                    $('#quantity').val(quantity - 1);
-                }
-
-                if (quantity == 2) {
-                    $('#decrease').find('i').attr('disabled', true);
-                }
-            });
-        }
-
-        function setCarouselProduct() {
-            let $carousel = $('.carousel-product').flickity({
-                // options
-                contain: true,
-                fullscreen: true,
-            });
-
-            // on click of the carousel-f-button, add class 'is-fullscreen' to the .carousel
-            $('.carousel-f-button').on('click', function () {
-                // get the index of the clicked carousel-cell
-                $carousel.flickity('viewFullscreen');
-                let index = $(this).closest('.carousel-cell').index();
-                $carousel.flickity('select', index);
-            });
-
-            $carousel.on('fullscreenChange.flickity', function (event, isFullscreen) {
-                // contain: false when in fullscreen
-                $('.carousel-product').flickity({
-                    contain: !isFullscreen,
-                    fullscreen: true,
-                    prevNextButtons: false
-                });
-
-                $(".shopify-section-group-header-group").css("z-index", isFullscreen ? "0" : "4");
-            });
-
-            $carousel.on('change.flickity', function (event, index) {
-                $('.carousel-nav').flickity('select', index);
-                $('.carousel-nav').find('.carousel-cell').removeClass('is-nav-selected');
-                $('.carousel-nav').find('.carousel-cell').eq(index).addClass('is-nav-selected');
-            });
-        }
-
-        function sizeGuideModal() {
-            var modal = new tingle.modal({
-                footer: true,
-                stickyFooter: false,
-                closeMethods: ['overlay', 'button', 'escape'],
-                closeLabel: "Size guide",
-                cssClass: ['size-guide-modal'],
-            });
-
-            modal.setContent(`
+        modal.setContent(`
                 <div class="x-text-[14px] x-px-[18px] x-leading-[24px]">
                     <div class="x-py-[32px] x-border-b-[1px] x-border-[#484f46]">
                         <div class="x-font-semibold">How to choose size</div>
@@ -627,8 +920,8 @@
                 </div>
             `);
 
-            $('.size-guide-btn').on('click', function () {
-                modal.open();
-            });
-        }
-    </script>
+        $('.size-guide-btn').on('click', function () {
+            modal.open();
+        });
+    }
+</script>
