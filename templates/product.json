@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "custom-main-product",
@@ -43,6 +43,9 @@
         "details"
       ],
       "settings": {}
+    },
+    "related-products": {
+      "type": "custom-related-products"
     },
     "1734975781c90a850d": {
       "type": "apps",
