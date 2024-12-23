@@ -1,10 +1,45 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "main": {
-            "type": "custom-main-product"
-        }
+  "sections": {
+    "main": {
+      "type": "custom-main-product",
+      "settings": {}
     },
-    "order": [
-        "main"
-    ]
+    "1734961826382cf520": {
+      "type": "apps",
+      "blocks": {
+        "yotpo_product_reviews_star_rating_HBRAg7": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/star-rating/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "yotpo_product_reviews_reviews_jQUacM": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/reviews/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "settings": {
+            "product": "{{product}}"
+          }
+        }
+      },
+      "block_order": [
+        "yotpo_product_reviews_star_rating_HBRAg7",
+        "yotpo_product_reviews_reviews_jQUacM"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1734961826382cf520"
+  ]
 }
