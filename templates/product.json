@@ -13,6 +13,9 @@
       "type": "custom-main-product",
       "settings": {}
     },
+    "related-products": {
+      "type": "custom-related-products"
+    },
     "1734961826382cf520": {
       "type": "apps",
       "blocks": {
@@ -40,6 +43,7 @@
   },
   "order": [
     "main",
+    "related-products",
     "1734961826382cf520"
   ]
 }
