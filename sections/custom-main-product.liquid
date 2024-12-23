@@ -45,244 +45,262 @@
 
             <div
                 class="product--information x-flex x-flex-col x-gap-[16px] md:x-gap-[32px] x-w-full x-p-[18px] x-pt-[25px] md:x-p-[0px]">
-                <div class="x-flex x-flex-col x-gap-[10px]">
-                    <div class="x-text-[18px] md:x-text-[20px] x-tracking-[0.6px]">{{ product.title }}</div>
-                    <div class="x-flex md:x-flex-col x-justify-between">
-                        <div class="x-text-[14px] md:x-text-[16px] x-tracking-[0.6px]"><span class="sub">{{
-                                product.selected_or_first_available_variant.option1 }}</span>
-                        </div>
-                        <div id="price-{{ section.id }}"
-                            class="product-price x-text-[14px] md:x-text-[16px] md:x-pt-[16px] x-tracking-[0.6px]">{{
-                            selected_variant.price | money }}</div>
-                    </div>
-                </div>
 
+                {% for block in section.blocks %}
+                    {% case block.type %}
+                        {% when 'product_information' %}
 
-                <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
-                    {% unless product.has_only_default_variant %}
-                    {% for option in product.options_with_values %}
-                        {% if option.name == "Size" %}
-                            <div class="x-flex x-flex-col x-gap-[12px]">
-                                <div class="x-flex x-flex-col x-gap-[10px]">
-                                    <div class="x-text-[14px] x-tracking-[0.4px]">
-                                        {{ option.name }}
+                            <div class="x-flex x-flex-col x-gap-[10px]">
+                                <div class="x-text-[18px] md:x-text-[20px] x-tracking-[0.6px]">{{ product.title }}</div>
+                                <div class="x-flex md:x-flex-col x-justify-between">
+                                    <div class="x-text-[14px] md:x-text-[16px] x-tracking-[0.6px]"><span class="sub">{{
+                                            product.selected_or_first_available_variant.option1 }}</span>
                                     </div>
-                                    <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
-                                        {% for value in option.values %}
-                                        <label>
-                                            <input type="radio" name="{{ option.name }}" class="swatch-input__hidden" value="{{ value }}"
-                                                id="" {% if value==option.selected_value %} checked {% endif %} />
-                                            <div class="text-variant">{{ value }}</div>
-                                        </label>
-                                        {% endfor %}
-                                    </div>
+                                    <div id="price-{{ section.id }}"
+                                        class="product-price x-text-[14px] md:x-text-[16px] md:x-pt-[16px] x-tracking-[0.6px]">{{
+                                        selected_variant.price | money }}</div>
                                 </div>
-                                <div>
-                                    <button type="button" class="size-guide-btn x-text-[14px] x-underline x-tracking-[0.4px]">
-                                        Size guide
+                            </div>
+
+                        {% when 'product_variants' %}
+
+                            <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
+                                {% unless product.has_only_default_variant %}
+                                {% for option in product.options_with_values %}
+                                    {% if option.name == "Size" %}
+                                        <div class="x-flex x-flex-col x-gap-[12px]">
+                                            <div class="x-flex x-flex-col x-gap-[10px]">
+                                                <div class="x-text-[14px] x-tracking-[0.4px]">
+                                                    {{ option.name }}
+                                                </div>
+                                                <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
+                                                    {% for value in option.values %}
+                                                    <label>
+                                                        <input type="radio" name="{{ option.name }}" class="swatch-input__hidden" value="{{ value }}"
+                                                            id="" {% if value==option.selected_value %} checked {% endif %} />
+                                                        <div class="text-variant">{{ value }}</div>
+                                                    </label>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="size-guide-btn x-text-[14px] x-underline x-tracking-[0.4px]">
+                                                    Size guide
+                                                </button>
+                                            </div>
+                                        </div>
+                                    {% elsif option.name == "Color" %}
+                                        <div class="x-pb-[32px] x-pl-[6px]">
+                                            <div class="x-flex x-gap-[18px]">
+                                                {% for value in option.values %}
+                                                <label>
+                                                    <input type="radio" name="{{ option.name }}" class="swatch-input__hidden"
+                                                        value="{{ value }}" data-self="{{ value }}" {% if value==option.selected_value %}
+                                                        checked {% endif %} />
+                                                    <div class="swatch-variant"
+                                                        style="background-color: {{ value.swatch.color }}; background-image: url({{ value.swatch.image.src | image_url: width: 400 }}); background-position: 50% 50%;">
+                                                        &nbsp;
+                                                    </div>
+                                                </label>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="x-pb-[32px] x-flex x-flex-col x-gap-[12px]">
+                                            <div class="x-flex x-flex-col x-gap-[10px]">
+                                                <div class="x-text-[14px] x-tracking-[0.4px]">
+                                                    {{ option.name }}
+                                                </div>
+                                                <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
+                                                    {% for value in option.values %}
+                                                    <label>
+                                                        <input type="radio" name="{{ option.name }}" class="swatch-input__hidden" value="{{ value }}"
+                                                            id="" {% if value==option.selected_value %} checked {% endif %} />
+                                                        <div class="text-variant">{{ value }}</div>
+                                                    </label>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                {% endunless %}
+            
+                                <script class="product-variants" type="application/json">
+                                            {{ product.variants | json }}
+                                </script>
+            
+                                <div class="x-flex x-gap-[10px] x-pt-[32px]">
+                                    <div class="x-inline-block">
+                                        <div
+                                            class="quantity-picker x-flex x-border-[1px] x-border-gray-300 x-gap-[12px] x-items-center x-justify-between">
+                                            <button type="button"
+                                                class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                                                id="decrease">
+                                                <i class="bx bx-minus"></i>
+                                            </button>
+                                            <input type="text" name="quantity" id="quantity" value="1" readonly
+                                                class="x-text-center x-w-[30px] x-bg-transparent x-border-none x-outline-none " />
+                                            <button type="button"
+                                                class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                                                id="increase">
+                                                <i class="bx bx-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <button type="button" name="add"
+                                        class="x-bg-[#484f46] x-text-white x-py-[12px] x-flex-1 x-text-[14px] {% if selected_variant.available == false %} x-opacity-35 {% endif %} x-transition-opacity x-duration-300"
+                                        {% if selected_variant.available==false %} disabled {% endif %}>
+                                        {% if selected_variant.available == false %}
+                                        Sold Out
+                                        {% else %}
+                                        Add to Cart
+                                        {% endif %}
                                     </button>
                                 </div>
-                            </div>
-                        {% elsif option.name == "Color" %}
-                            <div class="x-pb-[32px] x-pl-[6px]">
-                                <div class="x-flex x-gap-[18px]">
-                                    {% for value in option.values %}
-                                    <label>
-                                        <input type="radio" name="{{ option.name }}" class="swatch-input__hidden"
-                                            value="{{ value }}" data-self="{{ value }}" {% if value==option.selected_value %}
-                                            checked {% endif %} />
-                                        <div class="swatch-variant"
-                                            style="background-color: {{ value.swatch.color }}; background-image: url({{ value.swatch.image.src | image_url: width: 400 }}); background-position: 50% 50%;">
-                                            &nbsp;
+                            </variant-selector>
+
+                        {% when 'product_frequently' %}
+
+                            {% assign c_product = product.selected_or_first_available_variant.metafields.product.frequently_list.value %}
+                
+                            <div id="carousel-freq-container-{{ section.id }}">
+                                <div class="{% if c_product %} x-pb-[24px] {% endif %}">
+                                    {% if c_product %}
+                                        <div class="carousel-freq">
+                                            {% for t in c_product %}
+                                                <div class="carousel-cell x-border x-rounded-[8px] x-pb-[4px]">
+                                                    <input class="freq-checkbox x-absolute x-left-[8px] x-top-[8px] x-w-[16px] x-h-[16px]" type="checkbox" value="{{ t.id }}">
+                                                    <div class="freq cell-content x-flex x-flex-col" data-featured="{{ t.featured_image | image_url: width: 400 }}" data-media='{{ t.metafields.custom.other_media.value | join: ", " }}' data-description='{{ t.product.description | escape }}' data-title="{{ t.product.title }}" data-variant="{{ t.title }}" data-price="{{ t.price | money }}">
+                                                        <div class="x-aspect-square x-w-full" style="background-image: url({{ t.featured_image | image_url: width: 400 }}); background-size: contain">
+                                                            &nbsp;
+                                                        </div>
+                                                        <div class="x-text-center x-flex x-flex-col x-gap-[4px]">
+                                                            <div>
+                                                                <div class="x-text-[14px] x-font-bold">
+                                                                    {{ t.product.title }}
+                                                                </div>
+                                                                <div class="x-text-[12px] x-font-semibold">
+                                                                    {{ t.title }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="x-text-[14px]">
+                                                                {{ t.price | money }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
                                         </div>
-                                    </label>
-                                    {% endfor %}
+                                    {% endif %}
                                 </div>
                             </div>
+            
+                            <style>
+                                .carousel-freq .carousel-cell {
+                                    width: 48%;
+                                    aspect-ratio: 10/12;
+                                    margin-right: 10px;
+                                }
+                            </style>
+
+                        {% when 'product_details' %}
+
+                            <section class="collapsable-section">
+                                {% if product.description %}
+                                <div class="collapse product-details x-mt-[-1px]">
+                                    <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                                    <div class="x-border-t-[1px] x-border-b-[1px]">
+                                        <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                            <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
+                                                    class='bx bx-book-open x-text-[16px]'></i>Description</div>
+                                            <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                                <div
+                                                    class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
+                                            </div>
+                                        </div>
+                                        <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                            style="height: 0px; margin: 0px 0px;">
+                                            <div class="x-text-[12px]">
+                                                <div class="x-pb-[16px] x-px-[8px]">
+                                                    {{ product.description }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if product.metafields.details.how_run %}
+                                <div class="collapse product-details x-mt-[-1px]">
+                                    <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                                    <div class="x-border-t-[1px] x-border-b-[1px]">
+                                        <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                            <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
+                                                    class='bx bx-check-circle x-text-[16px]'></i>How This Product Runs</div>
+                                            <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                                <div
+                                                    class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
+                                            </div>
+                                        </div>
+                                        <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                            style="height: 0px; margin: 0px 0px;">
+                                            <div class="x-text-[12px]">
+                                                <div class="x-pb-[16px] x-px-[8px]">
+                                                    {{ product.metafields.details.how_run }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if product.metafields.details.fabric %}
+                                <div class="collapse product-details x-mt-[-1px]">
+                                    <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+                                    <div class="x-border-t-[1px] x-border-b-[1px]">
+                                        <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
+                                            <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
+                                                    class='bx bx-grid x-text-[16px]'></i>Fabric Details</div>
+                                            <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+                                                <div
+                                                    class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
+                                            </div>
+                                        </div>
+                                        <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+                                            style="height: 0px; margin: 0px 0px;">
+                                            <div class="x-text-[12px]">
+                                                <div class="x-pb-[16px] x-px-[8px]">
+                                                    {{ product.metafields.details.fabric }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </section>
+
+                        {% when '@app' %}
+
+                            {% render block %}
+                        
                         {% else %}
-                            <div class="x-pb-[32px] x-flex x-flex-col x-gap-[12px]">
-                                <div class="x-flex x-flex-col x-gap-[10px]">
-                                    <div class="x-text-[14px] x-tracking-[0.4px]">
-                                        {{ option.name }}
-                                    </div>
-                                    <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
-                                        {% for value in option.values %}
-                                        <label>
-                                            <input type="radio" name="{{ option.name }}" class="swatch-input__hidden" value="{{ value }}"
-                                                id="" {% if value==option.selected_value %} checked {% endif %} />
-                                            <div class="text-variant">{{ value }}</div>
-                                        </label>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                    {% endunless %}
-
-                    <script class="product-variants" type="application/json">
-                                {{ product.variants | json }}
-                    </script>
-
-                    <div class="x-flex x-gap-[10px] x-pt-[32px]">
-                        <div class="x-inline-block">
-                            <div
-                                class="quantity-picker x-flex x-border-[1px] x-border-gray-300 x-gap-[12px] x-items-center x-justify-between">
-                                <button type="button"
-                                    class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
-                                    id="decrease">
-                                    <i class="bx bx-minus"></i>
-                                </button>
-                                <input type="text" name="quantity" id="quantity" value="1" readonly
-                                    class="x-text-center x-w-[30px] x-bg-transparent x-border-none x-outline-none " />
-                                <button type="button"
-                                    class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
-                                    id="increase">
-                                    <i class="bx bx-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button type="button" name="add"
-                            class="x-bg-[#484f46] x-text-white x-py-[12px] x-flex-1 x-text-[14px] {% if selected_variant.available == false %} x-opacity-35 {% endif %} x-transition-opacity x-duration-300"
-                            {% if selected_variant.available==false %} disabled {% endif %}>
-                            {% if selected_variant.available == false %}
-                            Sold Out
-                            {% else %}
-                            Add to Cart
-                            {% endif %}
-                        </button>
-                    </div>
-
-                </variant-selector>
-
+                    {% endcase %}
+                {% endfor %}
+            
                 {% comment %} <div>
                     Reviews (if available, else hide)
                 </div> {% endcomment %}
 
-                {% assign c_product = product.selected_or_first_available_variant.metafields.product.frequently_list.value %}
-                
-                <div id="carousel-freq-container-{{ section.id }}">
-                    <div class="{% if c_product %} x-pb-[24px] {% endif %}">
-                        {% if c_product %}
-                            <div class="carousel-freq">
-                                {% for t in c_product %}
-                                    <div class="carousel-cell x-border x-rounded-[8px] x-pb-[4px]">
-                                        <input class="freq-checkbox x-absolute x-left-[8px] x-top-[8px] x-w-[16px] x-h-[16px]" type="checkbox" value="{{ t.id }}">
-                                        <div class="freq cell-content x-flex x-flex-col" data-featured="{{ t.featured_image | image_url: width: 400 }}" data-media='{{ t.metafields.custom.other_media.value | join: ", " }}' data-description='{{ t.product.description | escape }}' data-title="{{ t.product.title }}" data-variant="{{ t.title }}" data-price="{{ t.price | money }}">
-                                            <div class="x-aspect-square x-w-full" style="background-image: url({{ t.featured_image | image_url: width: 400 }}); background-size: contain">
-                                                &nbsp;
-                                            </div>
-                                            <div class="x-text-center x-flex x-flex-col x-gap-[4px]">
-                                                <div>
-                                                    <div class="x-text-[14px] x-font-bold">
-                                                        {{ t.product.title }}
-                                                    </div>
-                                                    <div class="x-text-[12px] x-font-semibold">
-                                                        {{ t.title }}
-                                                    </div>
-                                                </div>
-                                                <div class="x-text-[14px]">
-                                                    {{ t.price | money }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <style>
-                    .carousel-freq .carousel-cell {
-                        width: 48%;
-                        aspect-ratio: 10/12;
-                        margin-right: 10px;
-                    }
-                </style>
-
-                <section class="collapsable-section">
-                    {% if product.description %}
-                    <div class="collapse product-details x-mt-[-1px]">
-                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                        <div class="x-border-t-[1px] x-border-b-[1px]">
-                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
-                                        class='bx bx-book-open x-text-[16px]'></i>Description</div>
-                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                    <div
-                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                        &nbsp;
-                                    </div>
-                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                style="height: 0px; margin: 0px 0px;">
-                                <div class="x-text-[12px]">
-                                    <div class="x-pb-[16px] x-px-[8px]">
-                                        {{ product.description }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                    {% if product.metafields.details.how_run %}
-                    <div class="collapse product-details x-mt-[-1px]">
-                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                        <div class="x-border-t-[1px] x-border-b-[1px]">
-                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
-                                        class='bx bx-check-circle x-text-[16px]'></i>How This Product Runs</div>
-                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                    <div
-                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                        &nbsp;
-                                    </div>
-                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                style="height: 0px; margin: 0px 0px;">
-                                <div class="x-text-[12px]">
-                                    <div class="x-pb-[16px] x-px-[8px]">
-                                        {{ product.metafields.details.how_run }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                    {% if product.metafields.details.fabric %}
-                    <div class="collapse product-details x-mt-[-1px]">
-                        <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-                        <div class="x-border-t-[1px] x-border-b-[1px]">
-                            <div class="x-flex x-flex-row x-justify-between x-py-[20px] x-px-[8px] x-items-center">
-                                <div class="x-text-[14px] x-flex x-items-center x-leading-[0px] x-gap-[8px]"><i
-                                        class='bx bx-grid x-text-[16px]'></i>Fabric Details</div>
-                                <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-                                    <div
-                                        class="x-absolute x-bg-black x-h-[14px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
-                                        &nbsp;
-                                    </div>
-                                    <div class="x-absolute x-bg-black x-w-[14px] x-h-[1px]">&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-                                style="height: 0px; margin: 0px 0px;">
-                                <div class="x-text-[12px]">
-                                    <div class="x-pb-[16px] x-px-[8px]">
-                                        {{ product.metafields.details.fabric }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                </section>
             </div>
         </div>
     </div>
@@ -946,3 +964,34 @@
         });
     }
 </script>
+
+{% schema %}
+    {
+      "name": "Main Product",
+      "blocks": [
+        {
+            "type": "product_information",
+            "name": "Product Information",
+            "limit": 1
+        },
+        {
+            "type": "product_variants",
+            "name": "Variant Selector",
+            "limit": 1
+        },
+        {
+            "type": "product_frequently",
+            "name": "Frequently Bought",
+            "limit": 1
+        },
+        {
+            "type": "product_details",
+            "name": "Product Details",
+            "limit": 1
+        },
+        {
+            "type": "@app"
+        }
+      ]
+    }
+{% endschema %}
