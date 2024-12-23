@@ -8,32 +8,62 @@
  * ------------------------------------------------------------
  */
 {
-    "sections": {
-        "main": {
-            "type": "custom-main-product",
-            "blocks": {
-                "information": {
-                    "type": "product_information"
-                },
-                "variants": {
-                    "type": "product_variants"
-                },
-                "frequently": {
-                    "type": "product_frequently"
-                },
-                "details": {
-                    "type": "product_details"
-                }
-            },
-            "block_order": [
-                "information",
-                "variants",
-                "frequently",
-                "details"
-            ]
+  "sections": {
+    "main": {
+      "type": "custom-main-product",
+      "blocks": {
+        "information": {
+          "type": "product_information",
+          "settings": {}
+        },
+        "yotpo_product_reviews_star_rating_Bitd8R": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/star-rating/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "variants": {
+          "type": "product_variants",
+          "settings": {}
+        },
+        "frequently": {
+          "type": "product_frequently",
+          "settings": {}
+        },
+        "details": {
+          "type": "product_details",
+          "settings": {}
         }
+      },
+      "block_order": [
+        "information",
+        "yotpo_product_reviews_star_rating_Bitd8R",
+        "variants",
+        "frequently",
+        "details"
+      ],
+      "settings": {}
     },
-    "order": [
-        "main"
-    ]
+    "1734975781c90a850d": {
+      "type": "apps",
+      "blocks": {
+        "yotpo_product_reviews_reviews_H63rKa": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/reviews/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "settings": {
+            "product": "{{product}}"
+          }
+        }
+      },
+      "block_order": [
+        "yotpo_product_reviews_reviews_H63rKa"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1734975781c90a850d"
+  ]
 }
