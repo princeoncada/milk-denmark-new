@@ -288,6 +288,11 @@
                                 </div>
                                 {% endif %}
                             </section>
+
+                        {% when '@app' %}
+
+                            {% render block %}
+                        
                         {% else %}
                     {% endcase %}
                 {% endfor %}
@@ -983,6 +988,10 @@
             "type": "product_details",
             "name": "Product Details",
             "limit": 1
+        },
+        {
+            "type": "@app",
+            "name": "App"
         }
       ]
     }
