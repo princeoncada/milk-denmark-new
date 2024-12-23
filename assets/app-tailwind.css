@@ -1449,6 +1449,12 @@ video {
   font-style: normal;
 }
 
+.hover\:x-scale-105:hover {
+  --tw-scale-x: 1.05 !important;
+  --tw-scale-y: 1.05 !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+
 .hover\:x-bg-\[\#484f46\]:hover {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(72 79 70 / var(--tw-bg-opacity)) !important;
