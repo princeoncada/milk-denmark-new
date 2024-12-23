@@ -61,45 +61,62 @@
                 <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                     {% unless product.has_only_default_variant %}
                     {% for option in product.options_with_values %}
-                    {% if option.name != "Color" %}
-                    <div class="x-flex x-flex-col x-gap-[12px]">
-                        <div class="x-flex x-flex-col x-gap-[10px]">
-                            <div class="x-text-[14px] x-tracking-[0.4px]">
-                                {{ option.name }}
-                            </div>
-                            <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
-                                {% for value in option.values %}
-                                <label>
-                                    <input type="radio" name="size" class="swatch-input__hidden" value="{{ value }}"
-                                        id="" {% if value==option.selected_value %} checked {% endif %} />
-                                    <div class="text-variant">{{ value }}</div>
-                                </label>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <div>
-                            <button type="button" class="size-guide-btn x-text-[14px] x-underline x-tracking-[0.4px]">
-                                Size guide
-                            </button>
-                        </div>
-                    </div>
-                    {% else %}
-                    <div class="x-pb-[32px] x-pl-[6px]">
-                        <div class="x-flex x-gap-[18px]">
-                            {% for value in option.values %}
-                            <label>
-                                <input type="radio" name="variant-swatch" class="swatch-input__hidden"
-                                    value="{{ value }}" data-self="{{ value }}" {% if value==option.selected_value %}
-                                    checked {% endif %} />
-                                <div class="swatch-variant"
-                                    style="background-color: rgb(94, 94, 94); background-image: url({{ value.swatch.image.src | image_url: width: 400 }}); background-position: 50% 50%;">
-                                    &nbsp;
+                        {% if option.name == "Size" %}
+                            <div class="x-flex x-flex-col x-gap-[12px]">
+                                <div class="x-flex x-flex-col x-gap-[10px]">
+                                    <div class="x-text-[14px] x-tracking-[0.4px]">
+                                        {{ option.name }}
+                                    </div>
+                                    <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
+                                        {% for value in option.values %}
+                                        <label>
+                                            <input type="radio" name="{{ option.name }}" class="swatch-input__hidden" value="{{ value }}"
+                                                id="" {% if value==option.selected_value %} checked {% endif %} />
+                                            <div class="text-variant">{{ value }}</div>
+                                        </label>
+                                        {% endfor %}
+                                    </div>
                                 </div>
-                            </label>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
+                                <div>
+                                    <button type="button" class="size-guide-btn x-text-[14px] x-underline x-tracking-[0.4px]">
+                                        Size guide
+                                    </button>
+                                </div>
+                            </div>
+                        {% elsif option.name == "Color" %}
+                            <div class="x-pb-[32px] x-pl-[6px]">
+                                <div class="x-flex x-gap-[18px]">
+                                    {% for value in option.values %}
+                                    <label>
+                                        <input type="radio" name="{{ option.name }}" class="swatch-input__hidden"
+                                            value="{{ value }}" data-self="{{ value }}" {% if value==option.selected_value %}
+                                            checked {% endif %} />
+                                        <div class="swatch-variant"
+                                            style="background-color: {{ value.swatch.color }}; background-image: url({{ value.swatch.image.src | image_url: width: 400 }}); background-position: 50% 50%;">
+                                            &nbsp;
+                                        </div>
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="x-pb-[32px] x-flex x-flex-col x-gap-[12px]">
+                                <div class="x-flex x-flex-col x-gap-[10px]">
+                                    <div class="x-text-[14px] x-tracking-[0.4px]">
+                                        {{ option.name }}
+                                    </div>
+                                    <div class="x-grid x-grid-cols-2 x-text-center x-gap-[10px]">
+                                        {% for value in option.values %}
+                                        <label>
+                                            <input type="radio" name="{{ option.name }}" class="swatch-input__hidden" value="{{ value }}"
+                                                id="" {% if value==option.selected_value %} checked {% endif %} />
+                                            <div class="text-variant">{{ value }}</div>
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                     {% endunless %}
 
@@ -555,11 +572,15 @@
 
         getSelectedOptions() {
             this.options = Array.from(this.querySelectorAll('input:checked')).map(input => input.value);
+
+            console.log(this.options);
         }
 
         getVariantJSON() {
             this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
             return this.variantData;
+
+            console.log(this.variantData);
         }
 
         getSelectedVariant() {
