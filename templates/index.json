@@ -43,7 +43,16 @@
 				"featured_collection": "best-sellers",
 				"number_of_products_to_show": 4
 			}
-		}
+		},
+        "featured-products": {
+            "name": "Featured Products",
+            "type": "custom-featured-products",
+            "settings": {
+                "title": "Featured Products Collection",
+                "featured_collection": "featured-products",
+                "number_of_products_to_show": 4
+            }
+        }
 	},
 	"order": [
 		"hero",
@@ -51,6 +60,7 @@
 		"content-two",
 		"collections",
 		"content-three",
-		"best-sellers"
+		"best-sellers",
+        "featured-products"
 	]
 }
