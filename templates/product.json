@@ -1,7 +1,27 @@
 {
     "sections": {
         "main": {
-            "type": "custom-main-product"
+            "type": "custom-main-product",
+            "blocks": {
+                "information": {
+                    "type": "product_information"
+                },
+                "variants": {
+                    "type": "product_variants"
+                },
+                "frequently": {
+                    "type": "product_frequently"
+                },
+                "details": {
+                    "type": "product_details"
+                }
+            },
+            "block_order": [
+                "information",
+                "variants",
+                "frequently",
+                "details"
+            ]
         }
     },
     "order": [
