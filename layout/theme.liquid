@@ -310,6 +310,8 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
     
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
@@ -382,5 +384,8 @@
     {%- endif -%}
 
     <script src="{{ 'application.js' | asset_url }}" defer></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
