@@ -641,6 +641,7 @@
         }
 
         updateCartButton() {
+            if (document.querySelector('button[name="add"]') === null) return;
             const button = document.querySelector('button[name="add"]');
             button.disabled = !this.currentVariant.available;
             button.textContent = this.currentVariant.available ? 'Add to Cart' : 'Sold Out';
