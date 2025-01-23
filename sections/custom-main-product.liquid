@@ -59,7 +59,7 @@
                                     {% if customer %}
                                         <div id="price-{{ section.id }}"
                                             class="product-price x-text-[14px] md:x-text-[16px] md:x-pt-[16px] x-tracking-[0.6px]">{{
-                                            selected_variant.price | money }} USD</div>
+                                            selected_variant.price | money_with_currency }}</div>
                                     {% endif %}
                                 </div>
                             </div>
