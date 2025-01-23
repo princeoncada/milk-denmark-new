@@ -6,23 +6,27 @@
         <div class="x-flex x-flex-row x-overflow-auto lg:x-overflow-hidden x-gap-4 lg:x-gap-9 x-snap-x no-scrollbar">
             {% for block in section.blocks %}
                 {% assign product = all_products[block.settings.product] %}
-                <a href="{{ product.url | default: '#' }}" class="x-flex x-flex-col x-gap-4 x-min-w-[222px] x-snap-start lg:x-snap-none">
-                    <div>
+                <div class="x-flex x-flex-col x-gap-4 x-min-w-[222px] x-snap-start lg:x-snap-none">
+                    <a href="{{ product.url | default: '#' }}">
                         <img src="{{ product.featured_image | image_url: width: 1000, height: 1000 | default: 'sw1.png' }}"
                             alt="{{ product.featured_image.alt | default: 'Placeholder Image' }}" width="100%" height="100%"
                             class="x-transition-all x-ease-in-out x-duration-500 hover:x-scale-105">
                         <div class="x-w-full x-h-0.5 x-bg-black">&nbsp;</div>
-                    </div>
+                    </a>
                     <div class="x-flex x-flex-col x-gap-[8px]">
                         <div class="x-flex x-flex-row x-justify-between x-text-[18px] x-leading-[24px] x-font-semibold x-font-nanum">
-                            <div>{{ product.title | default: 'Product Name' }}</div>
-                            <div>{{ product.first_available_variant.price | money_without_currency | remove: '.00' | default: '29' }} USD</div>
+                            <a href="{{ product.url | default: '#' }}">{{ product.title | default: 'Product Name' }}</a>
+                            {% if customer %}
+                                <a href="{{ product.url | default: '#' }}">{{ product.first_available_variant.price | money_without_currency | remove: '.00' | default: '29' }} USD</a>
+                                {% else %}
+                                <a href="{{ routes.account_login_url }}?from=shopify-section-template--17785543917724__featured-products" class="x-text-[14px] x-text-red-600 x-font-normal">Login for Price</a>
+                            {% endif %}
                         </div>
                         <div class="x-flex x-flex-row x-justify-between x-leading-[20px] x-font-nanum">
                             <div>{{ product.variants.first.title | default: 'Default Tag' }}</div>
                         </div>
                     </div>
-                </a>
+                </div>
             {% endfor %}
         </div>
     </div>
