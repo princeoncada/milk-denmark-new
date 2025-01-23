@@ -80,7 +80,11 @@
       {%- else -%}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <span class="price-item price-item--regular">
-          {{ money_price }}
+            {% if customer %}
+                {{ money_price }}
+            {% else %}
+                <a href="{{ routes.account_login_url }}" class="x-text-[14px] x-text-red-600 x-font-normal">Login for Price</a>
+            {% endif %}
         </span>
       {%- endif -%}
     </div>
