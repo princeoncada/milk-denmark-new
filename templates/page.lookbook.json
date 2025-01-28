@@ -10,7 +10,89 @@
 {
   "sections": {
     "main": {
-      "type": "custom-lookbook"
+      "type": "custom-lookbook",
+      "blocks": {
+        "lookbook_section_cqTT7K": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-0.jpg"
+          }
+        },
+        "lookbook_section_mrgm9A": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-1.jpg"
+          }
+        },
+        "lookbook_section_Tb9hQr": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-2.jpg"
+          }
+        },
+        "lookbook_section_pNKpNn": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-3.jpg"
+          }
+        },
+        "lookbook_section_TVDttj": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-4.jpg"
+          }
+        },
+        "lookbook_section_mczNty": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-5.jpg"
+          }
+        },
+        "lookbook_section_x3Cdff": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-6.jpg"
+          }
+        },
+        "lookbook_section_WdXe6M": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-7.jpg"
+          }
+        },
+        "lookbook_section_pxcnwW": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-8.jpg"
+          }
+        },
+        "lookbook_section_3ECVPp": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-9.jpg"
+          }
+        },
+        "lookbook_section_FMYTmB": {
+          "type": "lookbook_section",
+          "settings": {
+            "section_image": "shopify://shop_images/Milk_Lookbook_updated_1_-pages-images-10.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "lookbook_section_cqTT7K",
+        "lookbook_section_mrgm9A",
+        "lookbook_section_Tb9hQr",
+        "lookbook_section_pNKpNn",
+        "lookbook_section_TVDttj",
+        "lookbook_section_mczNty",
+        "lookbook_section_x3Cdff",
+        "lookbook_section_WdXe6M",
+        "lookbook_section_pxcnwW",
+        "lookbook_section_3ECVPp",
+        "lookbook_section_FMYTmB"
+      ],
+      "settings": {}
     }
   },
   "order": [
