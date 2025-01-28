@@ -1,0 +1,33 @@
+<section>
+    <div>
+        <div>
+            <div>
+                {% for block in section.blocks %}
+                    <div class="x-w-full">
+                        <img src="{{ block.settings.section_image | img_url: 'master' }}" alt="{{ block.settings.section_image.alt }}" width="100%" height="100%">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+    {
+      "name": "Lookbook",
+      "blocks": [
+        {
+            "type": "lookbook_section",
+            "name": "Lookbook Section",
+            "limit": 11,
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "section_image",
+                    "label": "Section Image"
+                }
+            ]
+        }
+      ]
+    }
+{% endschema %}
