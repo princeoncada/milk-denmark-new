@@ -1858,6 +1858,10 @@ video {
   .md\:x-text-\[20px\] {
     font-size: 20px !important;
   }
+
+  .md\:x-text-\[24px\] {
+    font-size: 24px !important;
+  }
 }
 
 @media (min-width: 1280px) {
