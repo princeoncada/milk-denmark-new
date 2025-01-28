@@ -782,10 +782,10 @@
     }
 
     function setSwatchSub() {
-        let swatches = $('[name="variant-swatch"]');
+        let swatches = $('[name="Color"], [name="Design"]');
 
         swatches.on('change', function () {
-            let value = $(this).data('self');
+            let value = $(this).val();
             let sub = $('.sub');
             sub.text(value);
         });
