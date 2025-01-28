@@ -15,11 +15,11 @@
                     </a>
                     <div class="x-flex x-flex-col x-gap-[8px]">
                         <div class="x-flex x-flex-row x-justify-between x-text-[18px] x-leading-[24px] x-font-semibold x-font-nanum">
-                            <a href="{{ product.url | default: '#' }}" class="x-font-causten x-text-[14px]">{{ product.title | default: 'Product Name' }}</a>
+                            <a href="{{ product.url | default: '#' }}">{{ product.title | default: 'Product Name' }}</a>
                             {% if customer %}
-                                <a href="{{ product.url | default: '#' }}" class="x-font-causten x-text-[14px]">{{ product.first_available_variant.price | money_without_currency | remove: '.00' | default: '29' }} USD</a>
-                            {% else %}
-                                <a href="{{ routes.account_login_url }}" class="x-font-causten x-text-[14px] x-underline">Login for Price</a>
+                                <a href="{{ product.url | default: '#' }}">{{ product.first_available_variant.price | money_without_currency | remove: '.00' | default: '29' }} USD</a>
+                                {% else %}
+                                <a href="{{ routes.account_login_url }}?from=shopify-section-template--17785543917724__featured-products" class="x-text-[14px] x-text-red-600 x-font-normal">Login for Price</a>
                             {% endif %}
                         </div>
                         <div class="x-flex x-flex-row x-justify-between x-leading-[20px] x-font-nanum">

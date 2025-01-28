@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.header.name",
   "type": "header",
@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Get 25% off and free shipping from $100",
+            "text": "Free shipping for orders above $100",
             "link": ""
           }
         }
@@ -25,9 +25,7 @@
       "block_order": [
         "announcement-bar-0"
       ],
-      "custom_css": [
-
-      ],
+      "custom_css": [],
       "settings": {
         "color_scheme": "scheme-1",
         "show_line_separator": true,
@@ -42,7 +40,7 @@
       "type": "header",
       "custom_css": [
         "@media (min-width: 990px) {.header {display: flex; justify-content: space-between; }}",
-        "nav.header__inline-menu {font-family: \"Nanum Myeonjo\"; font-size: 16px; \/* z-index: 0; *\/}",
+        "nav.header__inline-menu {font-family: \"Nanum Myeonjo\"; font-size: 16px; /* z-index: 0; */}",
         ".header-wrapper {background-color: #f6f0e4;}"
       ],
       "settings": {

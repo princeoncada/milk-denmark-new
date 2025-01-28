@@ -1,0 +1,39 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "17377178037fd90345": {
+      "type": "apps",
+      "blocks": {
+        "s_store_locator_storeify_storelocator_HLgfrc": {
+          "type": "shopify://apps/s-store-locator/blocks/storeify-storelocator/e7003487-cc51-4321-9488-2c47c07a5b17",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "s_store_locator_storeify_storelocator_HLgfrc"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "17377178037fd90345"
+  ]
+}

@@ -56,9 +56,11 @@
                                     <div class="x-text-[14px] md:x-text-[16px] x-tracking-[0.6px]"><span class="sub">{{
                                             product.selected_or_first_available_variant.option1 }}</span>
                                     </div>
-                                    <div id="price-{{ section.id }}"
-                                        class="product-price x-text-[14px] md:x-text-[16px] md:x-pt-[16px] x-tracking-[0.6px]">{{
-                                        selected_variant.price | money }}</div>
+                                    {% if customer %}
+                                        <div id="price-{{ section.id }}"
+                                            class="product-price x-text-[14px] md:x-text-[16px] md:x-pt-[16px] x-tracking-[0.6px]">{{
+                                            selected_variant.price | money_with_currency }}</div>
+                                    {% endif %}
                                 </div>
                             </div>
 
@@ -131,32 +133,40 @@
                                 </script>
             
                                 <div class="x-flex x-gap-[10px] x-pt-[32px]">
-                                    <div class="x-inline-block">
-                                        <div
-                                            class="quantity-picker x-flex x-border-[1px] x-border-gray-300 x-gap-[12px] x-items-center x-justify-between">
-                                            <button type="button"
-                                                class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
-                                                id="decrease">
-                                                <i class="bx bx-minus"></i>
-                                            </button>
-                                            <input type="text" name="quantity" id="quantity" value="1" readonly
-                                                class="x-text-center x-w-[30px] x-bg-transparent x-border-none x-outline-none " />
-                                            <button type="button"
-                                                class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
-                                                id="increase">
-                                                <i class="bx bx-plus"></i>
-                                            </button>
+                                    {% if customer %}
+                                        <div class="x-inline-block">
+                                            <div
+                                                class="quantity-picker x-flex x-border-[1px] x-border-gray-300 x-gap-[12px] x-items-center x-justify-between">
+                                                <button type="button"
+                                                    class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                                                    id="decrease">
+                                                    <i class="bx bx-minus"></i>
+                                                </button>
+                                                <input type="text" name="quantity" id="quantity" value="1" readonly
+                                                    class="x-text-center x-w-[30px] x-bg-transparent x-border-none x-outline-none " />
+                                                <button type="button"
+                                                    class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                                                    id="increase">
+                                                    <i class="bx bx-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button type="button" name="add"
-                                        class="x-bg-[#484f46] x-text-white x-py-[12px] x-flex-1 x-text-[14px] {% if selected_variant.available == false %} x-opacity-35 {% endif %} x-transition-opacity x-duration-300"
-                                        {% if selected_variant.available==false %} disabled {% endif %}>
-                                        {% if selected_variant.available == false %}
-                                        Sold Out
-                                        {% else %}
-                                        Add to Cart
-                                        {% endif %}
-                                    </button>
+                                        <button type="button" name="add"
+                                            class="x-bg-[#484f46] x-text-white x-py-[12px] x-flex-1 x-text-[14px] {% if selected_variant.available == false %} x-opacity-35 {% endif %} x-transition-opacity x-duration-300"
+                                            {% if selected_variant.available==false %} disabled {% endif %}>
+                                            {% if selected_variant.available == false %}
+                                            Sold Out
+                                            {% else %}
+                                            Add to Cart
+                                            {% endif %}
+                                        </button>
+                                    {% else %}
+                                        <a href="{{ routes.account_login_url }}" type="button" name="add"
+                                            class="x-bg-red-800 x-text-white x-py-[12px] x-flex-1 x-text-[14px] x-transition-opacity x-duration-300 x-flex x-items-center x-justify-center"
+                                            >
+                                            Login for Price
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </variant-selector>
 
@@ -631,6 +641,7 @@
         }
 
         updateCartButton() {
+            if (document.querySelector('button[name="add"]') === null) return;
             const button = document.querySelector('button[name="add"]');
             button.disabled = !this.currentVariant.available;
             button.textContent = this.currentVariant.available ? 'Add to Cart' : 'Sold Out';
